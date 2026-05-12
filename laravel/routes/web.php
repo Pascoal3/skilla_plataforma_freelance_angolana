@@ -9,10 +9,14 @@ Route::get('/escolher-funcao', function () {
     return view('home.pagina_escolher_funcao');
 })->name('pagina_escolher_funcao');
 
-Route::get('/register/client', [RegisterController::class, 'showClientForm'])
-     ->name('register.client');
+Route::prefix('registar')->group(function () {
+    Route::get('/cliente', function () {
+        return view('registar.cliente');
+    })->name('registar.cliente');
 
-Route::get('/register/freelancer', [RegisterController::class, 'showFreelancerForm'])
-     ->name('register.freelancer');
+    Route::get('/freelancer', function () {
+        return view('registar.freelancer');
+    })->name('registar.freelancer');
+});
 
 

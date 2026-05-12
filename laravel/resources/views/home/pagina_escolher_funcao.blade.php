@@ -172,12 +172,21 @@
 </div>
 </button>
 </div>
+<p id="aviso-selecao" class="text-red-500 text-sm text-center hidden mt-2">
+     Por favor, selecione uma opção antes de continuar.
+</p>
 <input type="hidden" id="selected-role" name="role" value="">
 <!-- Primary Action -->
 <div class="flex flex-col items-center gap-6">
-<button class="w-full md:w-auto min-w-[340px] bg-brand-navy text-white px-14 py-5 rounded-full font-h3 text-lg btn-glow hover:scale-[1.02] transition-all duration-300 premium-shadow">
-                Criar minha conta
-            </button>
+<!-- Primary Action -->
+<div class="flex flex-col items-center gap-6">
+    <a id="btn-criar-conta" 
+       class="w-full md:w-auto min-w-[340px] bg-brand-navy text-white px-14 py-5 rounded-full font-h3 text-lg btn-glow hover:scale-[1.02] transition-all duration-300 premium-shadow opacity-50 pointer-events-none cursor-not-allowed flex items-center justify-center" 
+       href="javascript:void(0)">
+        Criar minha conta
+    </a>
+    <!-- ... resto do link de login ... -->
+</div>
 <div class="font-body-md text-brand-navy/70">
                 Já tem uma conta? 
                 <a class="text-brand-royal font-bold hover:underline underline-offset-4 transition-all" href="#">Entrar</a>
@@ -200,35 +209,54 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const cards = document.querySelectorAll('[data-role]');
+  const btnCriarConta = document.getElementById('btn-criar-conta');
+  const avisoSelecao = document.getElementById('aviso-selecao');
+  const hiddenInput = document.getElementById('selected-role');
+
+  const routes = {
+    'client': "{{ route('registar.cliente') }}",
+    'freelancer': "{{ route('registar.freelancer') }}"
+  };
+
   cards.forEach(card => {
     card.addEventListener('click', function() {
+      // Limpar seleções anteriores
       cards.forEach(c => {
         c.classList.remove('border-brand-royal');
         c.classList.add('border-transparent');
-        const dot = c.querySelector('[data-indicator="dot"]');
-        if (dot) dot.classList.add('opacity-0');
-        const iconBox = c.querySelector('.flex-shrink-0');
-        if (iconBox) iconBox.classList.remove('scale-110');
-        const title = c.querySelector('[data-title]');
-        if (title) {
-          title.classList.remove('text-brand-royal');
-          title.classList.add('text-brand-navy');
-        }
+        c.querySelector('[data-indicator="dot"]')?.classList.add('opacity-0');
+        c.querySelector('.flex-shrink-0')?.classList.remove('scale-110');
+        const t = c.querySelector('[data-title]');
+        if (t) { t.classList.remove('text-brand-royal'); t.classList.add('text-brand-navy'); }
       });
+
+      // Aplicar seleção atual
       this.classList.remove('border-transparent');
       this.classList.add('border-brand-royal');
-      const dot = this.querySelector('[data-indicator="dot"]');
-      if (dot) dot.classList.remove('opacity-0');
-      const iconBox = this.querySelector('.flex-shrink-0');
-      if (iconBox) iconBox.classList.add('scale-110');
+      this.querySelector('[data-indicator="dot"]')?.classList.remove('opacity-0');
+      this.querySelector('.flex-shrink-0')?.classList.add('scale-110');
       const title = this.querySelector('[data-title]');
-      if (title) {
-        title.classList.remove('text-brand-navy');
-        title.classList.add('text-brand-royal');
+      if (title) { title.classList.remove('text-brand-navy'); title.classList.add('text-brand-royal'); }
+
+      // Atualizar Input e Botão
+      const role = this.dataset.role;
+      hiddenInput.value = role;
+      
+      if (btnCriarConta) {
+        btnCriarConta.href = routes[role]; // Define o link real
+        btnCriarConta.classList.remove('opacity-50', 'pointer-events-none', 'cursor-not-allowed');
       }
-      const hiddenInput = document.getElementById('selected-role');
-      if (hiddenInput) hiddenInput.value = this.dataset.role;
+
+      avisoSelecao?.classList.add('hidden');
     });
+  });
+
+  // Validação extra ao clicar
+  btnCriarConta.addEventListener('click', function(e) {
+    if (!hiddenInput.value) {
+      e.preventDefault();
+      avisoSelecao?.classList.remove('hidden');
+    }
   });
 });
 </script>
