@@ -116,9 +116,12 @@
 </div>
 <div class="flex items-center gap-4">
 <button class="hidden md:block px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold rounded-full hover:bg-blue-50 transition-all active:scale-95">Entrar</button>
-<button class="px-6 py-2 bg-blue-600 text-white font-bold rounded-full hover:bg-blue-700 transition-all active:scale-95 flex items-center gap-2">
-                    Começar Grátis <i class="fa-solid fa-arrow-right"></i>
-</button>
+<a href="{{ route('pagina_escolher_funcao') }}"
+   class="px-6 py-2 bg-blue-600 text-white font-bold rounded-full hover:bg-blue-700 transition-all active:scale-95 flex items-center gap-2 w-fit">
+    
+    Começar Grátis 
+    <i class="fa-solid fa-arrow-right"></i>
+</a>
 </div>
 </nav>
 </header>
