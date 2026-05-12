@@ -159,7 +159,7 @@
 </div>
 <div>
 <div class="font-bold text-xl">+1.200</div>
-<div class="text-sm uppercase font-bold opacity-60">Jobs Concluídos</div>
+<div class="text-sm uppercase font-bold opacity-60">Trabalhos Concluídos</div>
 </div>
 </div>
 </div>

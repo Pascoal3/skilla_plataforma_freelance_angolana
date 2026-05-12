@@ -103,13 +103,17 @@
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
+        #logo_plataforma{
+            width: 80px;
+            height: 80px;
+        }
     </style>
 </head>
 <body class="font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
 <!-- TopNavBar (Derived from JSON with modification for white background) -->
 <header class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-lg border-b border-slate-100">
 <nav class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
-<div class="text-2xl font-black text-slate-950 italic font-h1 tracking-tighter">SKILLA</div>
+<div class="text-2xl font-black text-slate-950 italic font-h1 tracking-tighter"><img id="logo_plataforma" src="{{ asset('img/logo_skilla8_invertido-removebg-preview.png') }}" alt=""></div>
 <div class="hidden md:flex items-center gap-8">
 <a class="text-slate-400 hover:text-slate-950 transition-colors font-label-caps uppercase text-label-caps" href="#">How it Works</a>
 <a class="text-slate-400 hover:text-slate-950 transition-colors font-label-caps uppercase text-label-caps" href="#">Freelancers</a>
@@ -359,10 +363,34 @@ document.addEventListener('DOMContentLoaded', function() {
   provinceSelect.addEventListener('change', validateProvince);
   termsCheckbox.addEventListener('change', validateTerms);
 
+  // Function to update submit button state
+  function updateSubmitButtonState() {
+    const isFirstNameValid = validateFirstName();
+    const isLastNameValid = validateLastName();
+    const isEmailValid = validateEmail();
+    const isPasswordValid = validatePassword();
+    const isProvinceValid = validateProvince();
+    const isTermsValid = validateTerms();
+
+    const isFormValid = isFirstNameValid && isLastNameValid && isEmailValid && isPasswordValid && isProvinceValid && isTermsValid;
+
+    if (isFormValid) {
+      submitButton.removeAttribute('disabled');
+      submitButton.classList.remove('opacity-40', 'cursor-not-allowed');
+    } else {
+      submitButton.setAttribute('disabled', '');
+      submitButton.classList.add('opacity-40', 'cursor-not-allowed');
+    }
+  }
+
   // Submit button logic
   submitButton.addEventListener('click', function(e) {
     e.preventDefault();
 
+    // Update button state first to get latest validation results
+    updateSubmitButtonState();
+
+    // Check if form is valid
     const isFirstNameValid = validateFirstName();
     const isLastNameValid = validateLastName();
     const isEmailValid = validateEmail();
@@ -377,6 +405,32 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
+  // Real-time validation with button state updates
+  firstNameInput.addEventListener('input', function() {
+    validateFirstName();
+    updateSubmitButtonState();
+  });
+  lastNameInput.addEventListener('input', function() {
+    validateLastName();
+    updateSubmitButtonState();
+  });
+  emailInput.addEventListener('input', function() {
+    validateEmail();
+    updateSubmitButtonState();
+  });
+  passwordInput.addEventListener('input', function() {
+    validatePassword();
+    updateSubmitButtonState();
+  });
+  provinceSelect.addEventListener('change', function() {
+    validateProvince();
+    updateSubmitButtonState();
+  });
+  termsCheckbox.addEventListener('change', function() {
+    validateTerms();
+    updateSubmitButtonState();
+  });
+
   // Initial validation on load
   validateFirstName();
   validateLastName();
@@ -384,6 +438,7 @@ document.addEventListener('DOMContentLoaded', function() {
   validatePassword();
   validateProvince();
   validateTerms();
+  updateSubmitButtonState();
 });
 </script>
 </body></html>
