@@ -106,7 +106,7 @@
 <!-- Header -->
 <header class="bg-white dark:bg-slate-950 fixed top-0 w-full z-50 border-b-2 border-slate-900 dark:border-slate-800">
 <nav id="nav_logo" class="flex justify-between items-center px-6 py-4 max-w-full mx-auto">
-<div class="text-2xl font-black text-slate-900 dark:text-white uppercase font-headline-md tracking-tight"><img id="logo_plataforma" src="logo_skilla8-removebg-preview.png" alt=""></div>
+<div class="text-2xl font-black text-slate-900 dark:text-white uppercase font-headline-md tracking-tight"><img id="logo_plataforma" src="{{ asset('img/logo_skilla8-removebg-preview.png') }}" alt=""></div>
 <div class="hidden md:flex items-center gap-8 font-label-caps uppercase text-sm">
 <a class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300" href="#como-funciona">Como Funciona</a>
 <a class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300" href="#freelancers">Freelancers</a>
@@ -163,7 +163,7 @@
 </div>
 <div class="lg:col-span-5 relative">
 <div class="aspect-[4/5] rounded-3xl overflow-hidden border-4 border-slate-900 shadow-[20px_20px_0px_0px_rgba(37,99,235,1)]">
-<img alt="Hero Talento Angolano" class="w-full h-full object-cover" src="personagem_hero_section.png" alt="">
+<img alt="Hero Talento Angolano" class="w-full h-full object-cover" src="{{asset('img/personagem_hero_section.png') }}" alt="">
 </div>
 <div class="absolute -bottom-6 -left-6 bg-slate-900 text-white p-6 rounded-2xl max-w-[200px] hidden md:block">
 <p class="font-bold text-sm leading-tight italic">"Encontrei o meu designer em 24h. Incrível!"</p>
@@ -317,20 +317,25 @@
 <!-- Freelancer 1 -->
 <div class="bg-white group overflow-hidden rounded-2xl border-b-8 border-primary-container hover:border-secondary-fixed transition-all">
 <div class="aspect-[1/1] overflow-hidden relative">
-<img alt="Edna Fernandes" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="personagem2.png" >
+<img alt="Maura Fernandes" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="{{asset('img/personagem2.png')}}" >
 <div class="absolute top-4 left-4 bg-secondary-fixed px-3 py-1 rounded-full font-bold text-xs text-slate-900 flex items-center gap-1">
 <i class="fa-solid fa-circle-check material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;"></i> VERIFICADO
-                        </div>
+</div>
 </div>
 <div class="p-8 text-slate-900">
 <div class="flex justify-between items-start mb-4">
 <div>
-<h3 class="text-2xl font-black uppercase">Edna Fernandes</h3>
+<h3 class="text-2xl font-black uppercase">Maura Fernandes</h3>
 <p class="text-slate-500 font-bold">Designer UI/UX</p>
-</div>
+        </div>
 <div class="text-right">
 <div class="font-black text-xl">4.9</div>
-<div class="flex text-yellow-400"><i class="fa-solid fa-star material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;"></i><i class="fa-solid fa-star material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;"></i><i class="fa-solid fa-star material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;"></i><i class="fa-solid fa-star material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;"></i><i class="fa-solid fa-star material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;"></i></div>
+<div class="flex text-yellow-400">
+        <i class="fa-solid fa-star material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;"></i>
+        <i class="fa-solid fa-star material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;"></i>
+        <i class="fa-solid fa-star material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;"></i>
+        <i class="fa-solid fa-star material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;"></i>
+        <i class="fa-solid fa-star material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;"></i></div>
 </div>
 </div>
 <div class="flex flex-wrap gap-2 mb-6">
@@ -348,7 +353,7 @@
 
 <div class="bg-white group overflow-hidden rounded-2xl border-b-8 border-primary-container hover:border-secondary-fixed transition-all">
 <div class="aspect-[1/1] overflow-hidden relative">
-<img alt="Mauro Silva" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="personagem3.png">
+<img alt="Mauro Silva" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="{{asset('img/personagem3.png')}}">
 <div class="absolute top-4 left-4 bg-secondary-fixed px-3 py-1 rounded-full font-bold text-xs text-slate-900 flex items-center gap-1">
 <i class="fa-solid fa-circle-check material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;"></i> MELHOR CLASSIFICADO
                         </div>
@@ -379,7 +384,7 @@
 
 <div class="bg-white group overflow-hidden rounded-2xl border-b-8 border-primary-container hover:border-secondary-fixed transition-all">
 <div class="aspect-[1/1] overflow-hidden relative">
-<img alt="Cátia Bento" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="personagem4.png">
+<img alt="Cátia Bento" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="{{asset('personagem4.png')}}">
 <div class="absolute top-4 left-4 bg-secondary-fixed px-3 py-1 rounded-full font-bold text-xs text-slate-900 flex items-center gap-1">
 <i class="fa-solid fa-circle-check material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;"></i> VERIFICADO
                         </div>
