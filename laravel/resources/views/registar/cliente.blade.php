@@ -163,9 +163,14 @@
 <label class="font-label-caps text-label-caps uppercase text-slate-500">Senha</label>
 <div class="relative">
 <input class="w-full bg-slate-50 border-b-2 border-slate-200 focus:border-primary-container focus:ring-0 py-4 px-0 transition-all font-body-md text-slate-900 placeholder:text-slate-300" placeholder="Senha (8 ou mais caracteres)" type="password"/>
-<button class="absolute right-0 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors" type="button">
+<button class="absolute right-0 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors" type="button" id="toggle-password">
 <span class="material-symbols-outlined" data-icon="visibility">visibility</span>
 </button>
+</div>
+<span id="password-error" class="text-error text-sm font-medium mt-1 flex items-center gap-1 hidden">
+<span class="material-symbols-outlined text-[16px]">error</span>
+                        ❌ A senha deve ter pelo menos 8 caracteres
+                    </span>
 </div>
 </div>
 <!-- Row 4: Province Dropdown -->
@@ -193,9 +198,13 @@
 </label>
 <label class="flex items-start gap-3 cursor-pointer group">
 <div class="relative flex items-center mt-1">
-<input class="w-5 h-5 rounded border-slate-300 text-primary-container focus:ring-primary-container/20" type="checkbox"/>
+<input class="w-5 h-5 rounded border-slate-300 text-primary-container focus:ring-primary-container/20" type="checkbox" id="terms-checkbox"/>
 </div>
 <span class="text-body-md text-slate-600 leading-tight">Eu li e concordo com os <a class="text-[#D6FF2A] hover:underline font-medium transition-all" href="#">Termos de Serviço</a> e a <a class="text-[#D6FF2A] hover:underline font-medium transition-all" href="#">Política de Privacidade</a>.</span>
+<span id="terms-error" class="text-error text-sm font-medium mt-1 flex items-center gap-1 hidden">
+<span class="material-symbols-outlined text-[16px]">error</span>
+                        ❌ Você deve aceitar os Termos de Serviço e Política de Privacidade
+                    </span>
 </label>
 </div>
 <!-- CTA: Disabled State -->
@@ -228,4 +237,153 @@
 </div>
 </div>
 </footer>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Get form elements
+  const firstNameInput = document.querySelector('input[placeholder="Ex: Edson"]');
+  const lastNameInput = document.querySelector('input[placeholder="Ex: Manuel"]');
+  const emailInput = document.querySelector('input[type="email"]');
+  const passwordInput = document.querySelector('input[placeholder="Senha (8 ou mais caracteres)"]');
+  const provinceSelect = document.querySelector('select');
+  const termsCheckbox = document.getElementById('terms-checkbox');
+  const submitButton = document.querySelector('button[type="button"]:not(#toggle-password)');
+
+  // Error spans
+  const firstNameError = document.getElementById('first-name-error');
+  const lastNameError = document.getElementById('last-name-error');
+  const emailError = document.getElementById('email-error');
+  const passwordError = document.getElementById('password-error');
+  const provinceError = document.getElementById('province-error');
+  const termsError = document.getElementById('terms-error');
+
+  // Password toggle
+  const togglePasswordBtn = document.getElementById('toggle-password');
+  if (togglePasswordBtn) {
+    togglePasswordBtn.addEventListener('click', function() {
+      const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+      passwordInput.setAttribute('type', type);
+      // Change icon based on state
+      const icon = this.querySelector('span');
+      if (icon) {
+        icon.textContent = type === 'password' ? 'visibility' : 'visibility_off';
+      }
+    });
+  }
+
+  // Validation functions
+  function validateFirstName() {
+    const value = firstNameInput.value.trim();
+    if (value === '') {
+      showError(firstNameInput, firstNameError, 'Por favor, insira seu primeiro nome');
+      return false;
+    } else {
+      hideError(firstNameInput, firstNameError);
+      return true;
+    }
+  }
+
+  function validateLastName() {
+    const value = lastNameInput.value.trim();
+    if (value === '') {
+      showError(lastNameInput, lastNameError, 'Por favor, insira seu sobrenome');
+      return false;
+    } else {
+      hideError(lastNameInput, lastNameError);
+      return true;
+    }
+  }
+
+  function validateEmail() {
+    const value = emailInput.value.trim();
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (value === '') {
+      showError(emailInput, emailError, 'Por favor, insira um endereço de e-mail');
+      return false;
+    } else if (!emailPattern.test(value)) {
+      showError(emailInput, emailError, 'Por favor, insira um endereço de e-mail válido');
+      return false;
+    } else {
+      hideError(emailInput, emailError);
+      return true;
+    }
+  }
+
+  function validatePassword() {
+    const value = passwordInput.value;
+    if (value.length < 8) {
+      showError(passwordInput, passwordError, 'A senha deve ter pelo menos 8 caracteres');
+      return false;
+    } else {
+      hideError(passwordInput, passwordError);
+      return true;
+    }
+  }
+
+  function validateProvince() {
+    const value = provinceSelect.value;
+    if (value === '') {
+      showError(provinceSelect, provinceError, 'Por favor, selecione uma província');
+      return false;
+    } else {
+      hideError(provinceSelect, provinceError);
+      return true;
+    }
+  }
+
+  function validateTerms() {
+    if (!termsCheckbox.checked) {
+      showError(termsCheckbox, termsError, 'Você deve aceitar os Termos de Serviço e Política de Privacidade');
+      return false;
+    } else {
+      hideError(termsCheckbox, termsError);
+      return true;
+    }
+  }
+
+  function showError(input, errorSpan, message) {
+    input.classList.add('border-error');
+    errorSpan.textContent = message;
+    errorSpan.classList.remove('hidden');
+  }
+
+  function hideError(input, errorSpan) {
+    input.classList.remove('border-error');
+    errorSpan.classList.add('hidden');
+  }
+
+  // Real-time validation
+  firstNameInput.addEventListener('input', validateFirstName);
+  lastNameInput.addEventListener('input', validateLastName);
+  emailInput.addEventListener('input', validateEmail);
+  passwordInput.addEventListener('input', validatePassword);
+  provinceSelect.addEventListener('change', validateProvince);
+  termsCheckbox.addEventListener('change', validateTerms);
+
+  // Submit button logic
+  submitButton.addEventListener('click', function(e) {
+    e.preventDefault();
+
+    const isFirstNameValid = validateFirstName();
+    const isLastNameValid = validateLastName();
+    const isEmailValid = validateEmail();
+    const isPasswordValid = validatePassword();
+    const isProvinceValid = validateProvince();
+    const isTermsValid = validateTerms();
+
+    if (isFirstNameValid && isLastNameValid && isEmailValid && isPasswordValid && isProvinceValid && isTermsValid) {
+      alert('Cadastro realizado com sucesso!');
+      // Here you would typically submit the form
+      // form.submit();
+    }
+  });
+
+  // Initial validation on load
+  validateFirstName();
+  validateLastName();
+  validateEmail();
+  validatePassword();
+  validateProvince();
+  validateTerms();
+});
+</script>
 </body></html>
