@@ -5,9 +5,9 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Cadastro de Cliente | SKILLA</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -106,6 +106,20 @@
         #logo_plataforma{
             width: 80px;
             height: 80px;
+        }
+        @keyframes custom-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-custom-spin {
+            animation: custom-spin 1.2s linear infinite;
+        }
+        .neon-glow {
+            filter: drop-shadow(0 0 8px rgba(214, 255, 42, 0.4));
+        }
+        @keyframes loading-bar {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(300%); }
         }
     </style>
 </head>
@@ -399,9 +413,39 @@ document.addEventListener('DOMContentLoaded', function() {
     const isTermsValid = validateTerms();
 
     if (isFirstNameValid && isLastNameValid && isEmailValid && isPasswordValid && isProvinceValid && isTermsValid) {
-      alert('Cadastro realizado com sucesso!');
-      // Here you would typically submit the form
-      // form.submit();
+      // Show loading overlay
+      const overlay = document.querySelector('.fixed.inset-0.z-\\[100\\]');
+      if (overlay) {
+        overlay.classList.remove('hidden');
+      }
+
+      // Simulate backend processing
+      setTimeout(() => {
+        // For simulation, let's assume success most of the time
+        // In real implementation, this would be based on actual API response
+        const isSuccess = Math.random() > 0.1; // 90% success rate for demo
+
+        if (isSuccess) {
+          // Success: Keep overlay and redirect or show final message
+          // For now, we'll show an success alert and hide overlay after a moment
+          alert('Cadastro realizado com sucesso!');
+          // In a real app, you might redirect here:
+          // window.location.href = '/dashboard';
+
+          // Hide overlay after success message
+          setTimeout(() => {
+            if (overlay) {
+              overlay.classList.add('hidden');
+            }
+          }, 1500);
+        } else {
+          // Error: Hide overlay and show error message
+          if (overlay) {
+            overlay.classList.add('hidden');
+          }
+          alert('Erro ao processar o cadastro. Por favor, tente novamente.');
+        }
+      }, 3000); // 3 seconds simulation
     }
   });
 
@@ -441,4 +485,5 @@ document.addEventListener('DOMContentLoaded', function() {
   updateSubmitButtonState();
 });
 </script>
+@include('elementos.overlay_enviando_dados_form_cliente')
 </body></html>
