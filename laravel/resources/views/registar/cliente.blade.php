@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-AO"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cadastro de Cliente | SKILLA</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#b0d500",
+                    "surface-container-low": "#1a1d10",
+                    "inverse-surface": "#e3e4d0",
+                    "surface-container-lowest": "#0d0f05",
+                    "secondary-container": "#0053db",
+                    "secondary": "#b4c5ff",
+                    "on-secondary-container": "#cdd7ff",
+                    "primary": "#ffffff",
+                    "on-tertiary": "#293040",
+                    "on-primary-fixed-variant": "#3e4c00",
+                    "tertiary-fixed-dim": "#c0c6db",
+                    "on-surface": "#e3e4d0",
+                    "surface-bright": "#383b2c",
+                    "tertiary-fixed": "#dce2f7",
+                    "on-surface-variant": "#c5c9ad",
+                    "on-primary": "#2a3400",
+                    "on-error": "#690005",
+                    "on-secondary-fixed": "#00174b",
+                    "on-tertiary-container": "#5d6476",
+                    "primary-container": "#caf216",
+                    "error-container": "#93000a",
+                    "tertiary-container": "#dce2f7",
+                    "on-secondary-fixed-variant": "#003ea8",
+                    "secondary-fixed-dim": "#b4c5ff",
+                    "background": "#121509",
+                    "tertiary": "#ffffff",
+                    "surface-container-highest": "#333628",
+                    "on-primary-container": "#586c00",
+                    "surface-container": "#1e2114",
+                    "secondary-fixed": "#dbe1ff",
+                    "surface-dim": "#121509",
+                    "outline-variant": "#454933",
+                    "on-secondary": "#002a78",
+                    "primary-fixed-dim": "#b0d500",
+                    "on-tertiary-fixed": "#141b2b",
+                    "surface-container-high": "#292b1e",
+                    "surface": "#121509",
+                    "on-primary-fixed": "#171e00",
+                    "primary-fixed": "#caf216",
+                    "inverse-on-surface": "#2f3224",
+                    "on-tertiary-fixed-variant": "#404758",
+                    "on-error-container": "#ffdad6",
+                    "outline": "#8f9379",
+                    "on-background": "#e3e4d0",
+                    "error": "#ffb4ab",
+                    "surface-variant": "#333628",
+                    "inverse-primary": "#536600"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section-gap": "120px",
+                    "container-padding": "24px",
+                    "card-padding": "32px",
+                    "grid-gutter": "20px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "label-caps": ["Space Grotesk"],
+                    "h1": ["Space Grotesk"],
+                    "h3": ["Space Grotesk"],
+                    "h2": ["Space Grotesk"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "h1": ["72px", {"lineHeight": "1.0", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                    "h3": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "h2": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #FFFFFF;
+            color: #0B0F14;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        #logo_plataforma{
+            width: 80px;
+            height: 80px;
+        }
+    </style>
+</head>
+<body class="font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar (Derived from JSON with modification for white background) -->
+<header class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-lg border-b border-slate-100">
+<nav class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
+<div class="text-2xl font-black text-slate-950 italic font-h1 tracking-tighter"><img id="logo_plataforma" src="{{ asset('img/logo_skilla8_invertido-removebg-preview.png') }}" alt=""></div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-slate-400 hover:text-slate-950 transition-colors font-label-caps uppercase text-label-caps" href="#">How it Works</a>
+<a class="text-slate-400 hover:text-slate-950 transition-colors font-label-caps uppercase text-label-caps" href="#">Freelancers</a>
+<a class="text-slate-400 hover:text-slate-950 transition-colors font-label-caps uppercase text-label-caps" href="#">Categories</a>
+</div>
+<div class="flex items-center gap-4">
+<a class="text-[#D6FF2A] font-bold text-sm font-label-caps hover:brightness-90 transition-all" href="#">Candidatar-se como talento</a>
+</div>
+</nav>
+</header>
+<main class="min-h-screen pt-32 pb-20 flex flex-col items-center justify-start px-container-padding">
+<div class="w-full max-w-2xl text-center mb-12">
+<h1 class="font-h1 text-h2 md:text-h1 text-slate-950 mb-4">Cadastre-se para contratar talentos</h1>
+<p class="font-body-lg text-body-lg text-slate-500 max-w-md mx-auto">Encontre os melhores profissionais de Angola para elevar o seu negócio ao próximo nível tecnológico.</p>
+</div>
+<!-- Registration Form Container -->
+<section class="w-full max-w-xl bg-white">
+<form class="space-y-6">
+<!-- Row 1: First Name & Last Name -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-grid-gutter">
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps uppercase text-slate-500">Primeiro nome</label>
+<input class="w-full bg-slate-50 border-b-2 border-slate-200 focus:border-primary-container focus:ring-0 py-4 px-0 transition-all font-body-md text-slate-900 placeholder:text-slate-300" placeholder="Ex: Edson" type="text"/>
+<span id="first-name-error" class="text-error text-sm font-medium mt-1 flex items-center gap-1 hidden">
+<span class="material-symbols-outlined text-[16px]">error</span>
+                        ❌ Por favor, insira seu primeiro nome
+                    </span>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps uppercase text-slate-500">Sobrenome</label>
+<input class="w-full bg-slate-50 border-b-2 border-slate-200 focus:border-primary-container focus:ring-0 py-4 px-0 transition-all font-body-md text-slate-900 placeholder:text-slate-300" placeholder="Ex: Manuel" type="text"/>
+<span id="last-name-error" class="text-error text-sm font-medium mt-1 flex items-center gap-1 hidden">
+<span class="material-symbols-outlined text-[16px]">error</span>
+                        ❌ Por favor, insira seu sobrenome
+                    </span>
+</div>
+</div>
+<!-- Row 2: E-mail (Error State) -->
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps uppercase text-slate-500">E-mail profissional</label>
+<div class="relative">
+<input class="w-full bg-slate-50 border-b-2 border-slate-200 focus:border-primary-container focus:ring-0 py-4 px-0 transition-all font-body-md text-slate-900" type="email"/>
+</div>
+<span id="email-error" class="text-error text-sm font-medium mt-1 flex items-center gap-1 hidden">
+<span class="material-symbols-outlined text-[16px]">error</span>
+                        ❌ Por favor, insira um endereço de e-mail válido
+                    </span>
+</div>
+<!-- Row 3: Password with Toggle -->
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps uppercase text-slate-500">Senha</label>
+<div class="relative">
+<input class="w-full bg-slate-50 border-b-2 border-slate-200 focus:border-primary-container focus:ring-0 py-4 px-0 transition-all font-body-md text-slate-900 placeholder:text-slate-300" placeholder="Senha (8 ou mais caracteres)" type="password"/>
+<button class="absolute right-0 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors" type="button" id="toggle-password">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+</div>
+<span id="password-error" class="text-error text-sm font-medium mt-1 flex items-center gap-1 hidden">
+<span class="material-symbols-outlined text-[16px]">error</span>
+                        ❌ A senha deve ter pelo menos 8 caracteres
+                    </span>
+</div>
+</div>
+<!-- Row 4: Province Dropdown -->
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps uppercase text-slate-500">Província</label>
+<select class="w-full bg-slate-50 border-b-2 border-slate-200 focus:border-primary-container focus:ring-0 py-4 px-0 transition-all font-body-md text-slate-900 appearance-none">
+<option disabled="" selected="" value="">Selecione a província</option>
+<option value="luanda">Luanda</option>
+<option value="benguela">Benguela</option>
+<option value="huambo">Huambo</option>
+<option value="huila">Huíla</option>
+</select>
+<span id="province-error" class="text-error text-sm font-medium mt-1 flex items-center gap-1 hidden">
+<span class="material-symbols-outlined text-[16px]">error</span>
+                        ❌ Por favor, selecione uma província
+                    </span>
+</div>
+<!-- Consent Section -->
+<div class="space-y-4 pt-4">
+<label class="flex items-start gap-3 cursor-pointer group">
+<div class="relative flex items-center mt-1">
+<input checked="" class="w-5 h-5 rounded border-slate-300 text-primary-container focus:ring-primary-container/20" type="checkbox"/>
+</div>
+<span class="text-body-md text-slate-600 leading-tight">Gostaria de receber dicas, atualizações e promoções exclusivas do SKILLA por e-mail.</span>
+</label>
+<label class="flex items-start gap-3 cursor-pointer group">
+<div class="relative flex items-center mt-1">
+<input class="w-5 h-5 rounded border-slate-300 text-primary-container focus:ring-primary-container/20" type="checkbox" id="terms-checkbox"/>
+</div>
+<span class="text-body-md text-slate-600 leading-tight">Eu li e concordo com os <a class="text-[#D6FF2A] hover:underline font-medium transition-all" href="#">Termos de Serviço</a> e a <a class="text-[#D6FF2A] hover:underline font-medium transition-all" href="#">Política de Privacidade</a>.</span>
+<span id="terms-error" class="text-error text-sm font-medium mt-1 flex items-center gap-1 hidden">
+<span class="material-symbols-outlined text-[16px]">error</span>
+                        ❌ Você deve aceitar os Termos de Serviço e Política de Privacidade
+                    </span>
+</label>
+</div>
+<!-- CTA: Disabled State -->
+<div class="pt-8">
+<button class="w-full bg-[#D6FF2A] opacity-40 text-slate-950 font-bold py-5 rounded-full font-h3 transition-all cursor-not-allowed uppercase tracking-wide" disabled="" type="button">
+                        Criar minha conta
+                    </button>
+</div>
+<!-- Footer: Login Link -->
+<div class="text-center pt-4">
+<p class="text-body-md text-slate-500">
+                        Já tem uma conta? <a class="text-[#D6FF2A] font-bold hover:underline ml-1" href="#">Entrar</a>
+</p>
+</div>
+</form>
+</section>
+<!-- Decorative Element -->
+</main>
+<!-- Footer Component (Minimalist Variant for Auth) -->
+<footer class="w-full py-12 px-8 border-t border-slate-100 bg-white">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="text-xl font-black text-slate-950 italic font-h1">SKILLA</div>
+<div class="text-slate-400 font-body-md text-sm">
+                © 2024 SKILLA. High-Performance Freelancing in Angola.
+            </div>
+<div class="flex gap-6">
+<a class="text-slate-400 hover:text-[#D6FF2A] transition-all font-label-caps text-label-caps uppercase" href="#">Terms</a>
+<a class="text-slate-400 hover:text-[#D6FF2A] transition-all font-label-caps text-label-caps uppercase" href="#">Privacy</a>
+<a class="text-slate-400 hover:text-[#D6FF2A] transition-all font-label-caps text-label-caps uppercase" href="#">Instagram</a>
+</div>
+</div>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Get form elements
+  const firstNameInput = document.querySelector('input[placeholder="Ex: Edson"]');
+  const lastNameInput = document.querySelector('input[placeholder="Ex: Manuel"]');
+  const emailInput = document.querySelector('input[type="email"]');
+  const passwordInput = document.querySelector('input[placeholder="Senha (8 ou mais caracteres)"]');
+  const provinceSelect = document.querySelector('select');
+  const termsCheckbox = document.getElementById('terms-checkbox');
+  const submitButton = document.querySelector('button[type="button"]:not(#toggle-password)');
+
+  // Error spans
+  const firstNameError = document.getElementById('first-name-error');
+  const lastNameError = document.getElementById('last-name-error');
+  const emailError = document.getElementById('email-error');
+  const passwordError = document.getElementById('password-error');
+  const provinceError = document.getElementById('province-error');
+  const termsError = document.getElementById('terms-error');
+
+  // Password toggle
+  const togglePasswordBtn = document.getElementById('toggle-password');
+  if (togglePasswordBtn) {
+    togglePasswordBtn.addEventListener('click', function() {
+      const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+      passwordInput.setAttribute('type', type);
+      // Change icon based on state
+      const icon = this.querySelector('span');
+      if (icon) {
+        icon.textContent = type === 'password' ? 'visibility' : 'visibility_off';
+      }
+    });
+  }
+
+  // Validation functions
+  function validateFirstName() {
+    const value = firstNameInput.value.trim();
+    if (value === '') {
+      showError(firstNameInput, firstNameError, 'Por favor, insira seu primeiro nome');
+      return false;
+    } else {
+      hideError(firstNameInput, firstNameError);
+      return true;
+    }
+  }
+
+  function validateLastName() {
+    const value = lastNameInput.value.trim();
+    if (value === '') {
+      showError(lastNameInput, lastNameError, 'Por favor, insira seu sobrenome');
+      return false;
+    } else {
+      hideError(lastNameInput, lastNameError);
+      return true;
+    }
+  }
+
+  function validateEmail() {
+    const value = emailInput.value.trim();
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (value === '') {
+      showError(emailInput, emailError, 'Por favor, insira um endereço de e-mail');
+      return false;
+    } else if (!emailPattern.test(value)) {
+      showError(emailInput, emailError, 'Por favor, insira um endereço de e-mail válido');
+      return false;
+    } else {
+      hideError(emailInput, emailError);
+      return true;
+    }
+  }
+
+  function validatePassword() {
+    const value = passwordInput.value;
+    if (value.length < 8) {
+      showError(passwordInput, passwordError, 'A senha deve ter pelo menos 8 caracteres');
+      return false;
+    } else {
+      hideError(passwordInput, passwordError);
+      return true;
+    }
+  }
+
+  function validateProvince() {
+    const value = provinceSelect.value;
+    if (value === '') {
+      showError(provinceSelect, provinceError, 'Por favor, selecione uma província');
+      return false;
+    } else {
+      hideError(provinceSelect, provinceError);
+      return true;
+    }
+  }
+
+  function validateTerms() {
+    if (!termsCheckbox.checked) {
+      showError(termsCheckbox, termsError, 'Você deve aceitar os Termos de Serviço e Política de Privacidade');
+      return false;
+    } else {
+      hideError(termsCheckbox, termsError);
+      return true;
+    }
+  }
+
+  function showError(input, errorSpan, message) {
+    input.classList.add('border-error');
+    errorSpan.textContent = message;
+    errorSpan.classList.remove('hidden');
+  }
+
+  function hideError(input, errorSpan) {
+    input.classList.remove('border-error');
+    errorSpan.classList.add('hidden');
+  }
+
+  // Real-time validation
+  firstNameInput.addEventListener('input', validateFirstName);
+  lastNameInput.addEventListener('input', validateLastName);
+  emailInput.addEventListener('input', validateEmail);
+  passwordInput.addEventListener('input', validatePassword);
+  provinceSelect.addEventListener('change', validateProvince);
+  termsCheckbox.addEventListener('change', validateTerms);
+
+  // Function to update submit button state
+  function updateSubmitButtonState() {
+    const isFirstNameValid = validateFirstName();
+    const isLastNameValid = validateLastName();
+    const isEmailValid = validateEmail();
+    const isPasswordValid = validatePassword();
+    const isProvinceValid = validateProvince();
+    const isTermsValid = validateTerms();
+
+    const isFormValid = isFirstNameValid && isLastNameValid && isEmailValid && isPasswordValid && isProvinceValid && isTermsValid;
+
+    if (isFormValid) {
+      submitButton.removeAttribute('disabled');
+      submitButton.classList.remove('opacity-40', 'cursor-not-allowed');
+    } else {
+      submitButton.setAttribute('disabled', '');
+      submitButton.classList.add('opacity-40', 'cursor-not-allowed');
+    }
+  }
+
+  // Submit button logic
+  submitButton.addEventListener('click', function(e) {
+    e.preventDefault();
+
+    // Update button state first to get latest validation results
+    updateSubmitButtonState();
+
+    // Check if form is valid
+    const isFirstNameValid = validateFirstName();
+    const isLastNameValid = validateLastName();
+    const isEmailValid = validateEmail();
+    const isPasswordValid = validatePassword();
+    const isProvinceValid = validateProvince();
+    const isTermsValid = validateTerms();
+
+    if (isFirstNameValid && isLastNameValid && isEmailValid && isPasswordValid && isProvinceValid && isTermsValid) {
+      alert('Cadastro realizado com sucesso!');
+      // Here you would typically submit the form
+      // form.submit();
+    }
+  });
+
+  // Real-time validation with button state updates
+  firstNameInput.addEventListener('input', function() {
+    validateFirstName();
+    updateSubmitButtonState();
+  });
+  lastNameInput.addEventListener('input', function() {
+    validateLastName();
+    updateSubmitButtonState();
+  });
+  emailInput.addEventListener('input', function() {
+    validateEmail();
+    updateSubmitButtonState();
+  });
+  passwordInput.addEventListener('input', function() {
+    validatePassword();
+    updateSubmitButtonState();
+  });
+  provinceSelect.addEventListener('change', function() {
+    validateProvince();
+    updateSubmitButtonState();
+  });
+  termsCheckbox.addEventListener('change', function() {
+    validateTerms();
+    updateSubmitButtonState();
+  });
+
+  // Initial validation on load
+  validateFirstName();
+  validateLastName();
+  validateEmail();
+  validatePassword();
+  validateProvince();
+  validateTerms();
+  updateSubmitButtonState();
+});
+</script>
+</body></html>
