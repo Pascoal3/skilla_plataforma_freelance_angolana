@@ -117,6 +117,7 @@
         },
       }
 </script>
+<script src="{{ asset('js/inicio.js') }}"></script>
 
 </head>
 <body class="bg-surface font-body-md text-on-surface custom-scrollbar">
@@ -407,7 +408,7 @@
 
 <div class="bg-white group overflow-hidden rounded-2xl border-b-8 border-primary-container hover:border-secondary-fixed transition-all">
 <div class="aspect-[1/1] overflow-hidden relative">
-<img alt="Cátia Bento" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="{{asset('personagem4.png')}}">
+<img alt="Cátia Bento" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="{{asset('img/personagem4.png')}}">
 <div class="absolute top-4 left-4 bg-secondary-fixed px-3 py-1 rounded-full font-bold text-xs text-slate-900 flex items-center gap-1">
 <i class="fa-solid fa-circle-check material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;"></i> VERIFICADO
                         </div>
@@ -465,17 +466,17 @@
 <div class="bg-slate-50 p-8 rounded-2xl border-l-4 border-primary-container">
 <p class="italic text-lg text-slate-700 mb-6">"Conseguimos escalar nossa agência de marketing usando apenas freelancers da Skilla. A qualidade é top e o processo é sem stress."</p>
 <div class="flex items-center gap-4">
-<div class="w-12 h-12 rounded-full bg-slate-300"></div>
+<img class="img_testemunho" src="{{ asset('img/foto_perfil_exemplar.png') }}" alt="">
 <div>
 <div class="font-bold">Ricardo Antunes</div>
-<div class="text-sm opacity-60">Diretor, Luanda Creative</div>
+<div class="text-sm opacity-60">Diretor, CrioLuanda</div>
 </div>
 </div>
 </div>
 <div class="bg-slate-50 p-8 rounded-2xl border-l-4 border-secondary-fixed">
 <p class="italic text-lg text-slate-700 mb-6">"Como freelancer, a Skilla mudou a minha vida. Consigo clientes sérios e o pagamento cai sempre no prazo combinado."</p>
 <div class="flex items-center gap-4">
-<div class="w-12 h-12 rounded-full bg-slate-300"></div>
+<img class="img_testemunho" src="{{ asset('img/foto_perfil_exemplar.png') }}" alt="">
 <div>
 <div class="font-bold">Sara Gomes</div>
 <div class="text-sm opacity-60">Redatora Freelancer</div>
@@ -493,7 +494,7 @@
 <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">shield</span> Pagamento 100% Protegido
             </div>
 <h2 class="font-display-lg text-display-lg uppercase text-white mb-8">Trabalhe Sem Medo de <span class="text-emerald-500">Burla</span></h2>
-<p class="text-slate-400 text-body-lg mb-16">Nosso sistema de Escrow garante que seu dinheiro esteja seguro até o final do projeto.</p>
+<p class="text-slate-400 text-body-lg mb-16">Nosso sistema de Escrow garante que seu dinheiro esteja seguro até ao final do projeto.</p>
 <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
 <div class="p-6 bg-slate-900 rounded-xl border border-slate-800">
 <div class="text-emerald-500 font-black text-xl mb-2">01</div>
@@ -529,8 +530,9 @@
 <div class="bg-slate-950 p-8 rounded-3xl border-2 border-slate-900 flex flex-col h-full group hover:border-primary-container transition-all">
 <div class="text-secondary-fixed font-black text-sm uppercase mb-4">Iniciante</div>
 <div class="text-4xl font-black text-white mb-6">Grátis</div>
+<div class="text-secondary-fixed text-xs mb-6">20 Créditos dados ao criar conta</div>
 <ul class="space-y-4 mb-10 flex-grow">
-<li class="flex items-center gap-3 text-slate-400 text-sm"><i class="fa-solid fa-circle-check material-symbols-outlined text-primary-container text-lg"></i> 5 Candidaturas/Mês</li>
+<li class="flex items-center gap-3 text-slate-400 text-sm"><i class="fa-solid fa-circle-check material-symbols-outlined text-primary-container text-lg"></i> 4 Candidaturas</li>
 <li class="flex items-center gap-3 text-slate-400 text-sm"><i class="fa-solid fa-circle-check material-symbols-outlined text-primary-container text-lg"></i> Chat Básico</li>
 <li class="flex items-center gap-3 text-slate-400 text-sm"><i class="fa-solid fa-circle-check material-symbols-outlined text-primary-container text-lg"></i> Perfil Padrão</li>
 </ul>
