@@ -153,12 +153,12 @@
                     A plataforma líder em Angola para conectar empresas aos melhores freelancers do mercado digital. Qualidade, rapidez e pagamentos seguros.
                 </p>
 <div class="flex flex-col sm:flex-row gap-4">
-<button class="px-8 py-4 bg-primary-container text-white rounded-full font-bold text-lg flex items-center justify-center gap-3 hover:shadow-xl transition-all">
+<a href="{{ route('registar.cliente') }}" class="px-8 py-4 bg-primary-container text-white rounded-full font-bold text-lg flex items-center justify-center gap-3 hover:shadow-xl transition-all">
                         Contratar Freelancer  <i class="fa-solid fa-arrow-up-right-from-square"></i>
-</button>
-<button class="px-8 py-4 border-2 border-primary-container text-primary-container rounded-full font-bold text-lg flex items-center justify-center hover:bg-primary-container/10 transition-all">
-                        Trabalhar como Freelancer 
-                    </button>
+</a>
+<a href="{{ route('registar.freelancer') }}" class="px-8 py-4 border-2 border-primary-container text-primary-container rounded-full font-bold text-lg flex items-center justify-center hover:bg-primary-container/10 transition-all">
+                        Trabalhar como Freelancer
+                    </a>
 </div>
 <div class="mt-16 flex flex-wrap gap-6">
 <div class="bg-white/80 backdrop-blur p-4 rounded-xl border border-black/10 flex items-center gap-4 shadow-sm">

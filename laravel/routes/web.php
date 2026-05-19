@@ -19,4 +19,10 @@ Route::prefix('registar')->group(function () {
     })->name('registar.freelancer');
 });
 
+Route::get('/registar/cliente', function () {
+    return view('registar.cliente');
+})->name('registar.cliente');
 
+Route::get('/registar/freelancer', function () {
+    return view('registar.freelancer');
+})->name('registar.freelancer');

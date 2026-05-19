@@ -3,9 +3,9 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Cadastro de Cliente | SKILLA</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -185,9 +185,11 @@
 </div>
 <!-- CTA: Disabled State -->
 <div class="pt-8">
-<button class="w-full opacity-40 font-bold py-5 rounded-full font-h3 transition-all cursor-not-allowed uppercase tracking-wide" disabled="" style="background-color: rgb(225, 240, 177); color: rgb(47, 50, 36); opacity: 1;" type="button">
-                        Criar minha conta
-                    </button>
+
+    <button class="w-full opacity-40 font-bold py-5 rounded-full font-h3 transition-all cursor-not-allowed uppercase tracking-wide" disabled="" style="background-color: rgb(225, 240, 177); color: rgb(47, 50, 36); opacity: 1;" type="button">
+                            Criar minha conta
+                        </button>
+
 </div>
 <!-- Footer: Login Link -->
 <div class="text-center pt-4">
