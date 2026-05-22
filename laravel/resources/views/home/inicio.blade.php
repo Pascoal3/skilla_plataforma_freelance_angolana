@@ -584,30 +584,93 @@
 <h2 class="font-display-lg text-display-lg uppercase text-white mb-16 text-center">Perguntas <span class="text-secondary-fixed">Frequentes</span></h2>
 <div class="space-y-4">
 <div class="bg-slate-800 rounded-2xl overflow-hidden">
-<button class="w-full p-6 text-left flex justify-between items-center group">
+<button class="w-full p-6 text-left flex justify-between items-center group faq-toggle">
 <span class="text-white font-bold text-lg">Como faço para receber pagamentos?</span>
 <i class="fa-solid fa-chevron-down material-symbols-outlined text-slate-500 group-hover:text-white transition-all"></i>
 </button>
-<div class="px-6 pb-6 text-slate-400 text-sm">
+<div class="px-6 pb-6 text-slate-400 text-sm hidden">
                         Pode receber via transferência bancária direta para qualquer banco nacional (BAI, BFA, etc.) ou através da sua carteira digital Skilla em 48h úteis após a aprovação do cliente.
                     </div>
 </div>
 <div class="bg-slate-800 rounded-2xl overflow-hidden">
-<button class="w-full p-6 text-left flex justify-between items-center group">
+<button class="w-full p-6 text-left flex justify-between items-center group faq-toggle">
 <span class="text-white font-bold text-lg">A Skilla cobra comissão sobre os projetos?</span>
 <i class="fa-solid fa-chevron-down material-symbols-outlined text-slate-500 group-hover:text-white transition-all"></i>
 </button>
 <div class="px-6 pb-6 text-slate-400 text-sm hidden">
-                        Sim, cobramos uma taxa de serviço entre 5% a 15% dependendo do seu plano, para manter a plataforma segura e operacional.
+                        Sim, a plataforma retém uma comissão de 10% sobre o valor de cada projeto concluído com sucesso para manter a infraestrutura e a segurança do sistema.
                     </div>
 </div>
 <div class="bg-slate-800 rounded-2xl overflow-hidden">
-<button class="w-full p-6 text-left flex justify-between items-center group">
+<button class="w-full p-6 text-left flex justify-between items-center group faq-toggle">
 <span class="text-white font-bold text-lg">Os freelancers são realmente de Angola?</span>
 <i class="fa-solid fa-chevron-down material-symbols-outlined text-slate-500 group-hover:text-white transition-all"></i>
 </button>
 <div class="px-6 pb-6 text-slate-400 text-sm hidden">
-                        A maioria sim, mas a plataforma está aberta a talentos da CPLP. No entanto, focamos no mercado Angolano para garantir facilidade de comunicação e pagamentos.
+                        A maioria sim, mas a plataforma está aberta a talentos da CPLP. No entanto, focamos no mercado angolano para garantir facilidade de comunicação e pagamentos.
+                    </div>
+</div>
+<div class="bg-slate-800 rounded-2xl overflow-hidden">
+<button class="w-full p-6 text-left flex justify-between items-center group faq-toggle">
+<span class="text-white font-bold text-lg">Como funciona o sistema Escrow?</span>
+<i class="fa-solid fa-chevron-down material-symbols-outlined text-slate-500 group-hover:text-white transition-all"></i>
+</button>
+<div class="px-6 pb-6 text-slate-400 text-sm hidden">
+                        O Escrow é a nossa garantia de segurança: quando você contrata um freelancer, o valor é retido pela Skilla. O dinheiro só é liberado para o profissional após você aprovar a entrega final do trabalho.
+                    </div>
+</div>
+<div class="bg-slate-800 rounded-2xl overflow-hidden">
+<button class="w-full p-6 text-left flex justify-between items-center group faq-toggle">
+<span class="text-white font-bold text-lg">O que são os "Créditos" para freelancers?</span>
+<i class="fa-solid fa-chevron-down material-symbols-outlined text-slate-500 group-hover:text-white transition-all"></i>
+</button>
+<div class="px-6 pb-6 text-slate-400 text-sm hidden">
+                        Para garantir a qualidade das candidaturas, os freelancers utilizam créditos para enviar propostas. Isso evita spam e garante que apenas profissionais realmente interessados e qualificados se candidatem aos projetos.
+                    </div>
+</div>
+<div class="bg-slate-800 rounded-2xl overflow-hidden">
+<button class="w-full p-6 text-left flex justify-between items-center group faq-toggle">
+<span class="text-white font-bold text-lg">O que acontece se houver um problema na entrega do trabalho?</span>
+<i class="fa-solid fa-chevron-down material-symbols-outlined text-slate-500 group-hover:text-white transition-all"></i>
+</button>
+<div class="px-6 pb-6 text-slate-400 text-sm hidden">
+                        Você pode abrir uma "Disputa". O pagamento fica congelado e o sistema de resolução de disputas da Skilla intervém para garantir que o trabalho seja corrigido ou que o valor seja reembolsado para a sua carteira.
+                    </div>
+</div>
+<div class="bg-slate-800 rounded-2xl overflow-hidden">
+<button class="w-full p-6 text-left flex justify-between items-center group faq-toggle">
+<span class="text-white font-bold text-lg">Como posso adicionar fundos à minha carteira?</span>
+<i class="fa-solid fa-chevron-down material-symbols-outlined text-slate-500 group-hover:text-white transition-all"></i>
+</button>
+<div class="px-6 pb-6 text-slate-400 text-sm hidden">
+                        A recarga de saldo é feita de forma simples e rápida através da sua carteira virtual, simulando a integração com serviços como o Multicaixa Express.
+                    </div>
+</div>
+<div class="bg-slate-800 rounded-2xl overflow-hidden">
+<button class="w-full p-6 text-left flex justify-between items-center group faq-toggle">
+<span class="text-white font-bold text-lg">Como posso saber se um freelancer é confiável?</span>
+<i class="fa-solid fa-chevron-down material-symbols-outlined text-slate-500 group-hover:text-white transition-all"></i>
+</button>
+<div class="px-6 pb-6 text-slate-400 text-sm hidden">
+                        Verifique o portfólio do profissional, a média de avaliações bilaterais deixadas por outros clientes e procure pelo selo de "Verificado", que indica profissionais validados pela plataforma.
+                    </div>
+</div>
+<div class="bg-slate-800 rounded-2xl overflow-hidden">
+<button class="w-full p-6 text-left flex justify-between items-center group faq-toggle">
+<span class="text-white font-bold text-lg">Posso editar um projeto antes de publicá-lo?</span>
+<i class="fa-solid fa-chevron-down material-symbols-outlined text-slate-500 group-hover:text-white transition-all"></i>
+</button>
+<div class="px-6 pb-6 text-slate-400 text-sm hidden">
+                        Sim! Nosso sistema de criação de Jobs possui um fluxo de 5 etapas com a função de "Rascunho", permitindo que você refine o escopo e o orçamento antes de torná-lo público.
+                    </div>
+</div>
+<div class="bg-slate-800 rounded-2xl overflow-hidden">
+<button class="w-full p-6 text-left flex justify-between items-center group faq-toggle">
+<span class="text-white font-bold text-lg">O que acontece com as vagas que ficam abertas por muito tempo?</span>
+<i class="fa-solid fa-chevron-down material-symbols-outlined text-slate-500 group-hover:text-white transition-all"></i>
+</button>
+<div class="px-6 pb-6 text-slate-400 text-sm hidden">
+                        Para manter a plataforma atualizada, o sistema possui automações (Cron Jobs) que cancelam automaticamente vagas inativas que ultrapassam a data de expiração definida.
                     </div>
 </div>
 </div>
