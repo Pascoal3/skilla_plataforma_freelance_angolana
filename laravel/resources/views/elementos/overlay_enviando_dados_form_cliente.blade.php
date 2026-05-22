@@ -160,7 +160,7 @@
             0% { transform: translateX(-100%); }
             100% { transform: translateX(300%); }
         }
-    </style>
+</style>
 </body>
 
 </html>

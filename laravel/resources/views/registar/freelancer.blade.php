@@ -101,10 +101,10 @@
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
-    </style>
+</style>
 <style data-stitch-cursor=""></style><style data-stitch-scroll-lock=""></style><style data-stitch-cursor=""></style><style data-stitch-scroll-lock=""></style><style data-stitch-cursor=""></style><style data-stitch-scroll-lock=""></style></head>
 <body class="font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
-<!-- TopNavBar (Derived from JSON with modification for white background) -->
+<!-- TopNavBar  -->
 <header class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-lg border-b border-slate-100">
 <nav class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
 <div class="text-2xl font-black text-slate-950 italic font-h1 tracking-tighter">SKILLA</div>
@@ -215,10 +215,6 @@
 </div>
 </div>
 </footer>
+</body>
 
-
-
-
-
-
-</body></html>
+</html>
