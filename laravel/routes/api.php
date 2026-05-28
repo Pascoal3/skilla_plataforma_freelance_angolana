@@ -22,3 +22,16 @@ Route::prefix('proposals')->group(function () {
     Route::post('/send', [ProposalController::class, 'store']); // Freelancer envia
     Route::post('/{id}/accept', [ProposalController::class, 'accept']); // Cliente aceita
 });
+
+use App\Http\Controllers\ContractController;
+use App\Http\Controllers\ReviewController;
+
+// Gestão de Contratos (Ciclo de vida)
+Route::prefix('contracts')->group(function () {
+    Route::patch('/{id}/submit', [ContractController::class, 'submit']);   // Freelancer entrega
+    Route::patch('/{id}/approve', [ContractController::class, 'approve']); // Cliente aprova
+    Route::post('/{id}/dispute', [ContractController::class, 'dispute']);  // Abrir disputa
+});
+
+// Avaliações
+Route::post('/reviews', [ReviewController::class, 'store']);
