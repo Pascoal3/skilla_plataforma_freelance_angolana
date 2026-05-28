@@ -11,37 +11,32 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('jobs', function (Blueprint $table) {
-            $table->id();
-            $table->string('queue')->index();
-            $table->longText('payload');
-            $table->unsignedSmallInteger('attempts');
-            $table->unsignedInteger('reserved_at')->nullable();
-            $table->unsignedInteger('available_at');
-            $table->unsignedInteger('created_at');
-        });
+        Schema::create('trabalhos', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->foreignUuid('cliente_id')->constrained('perfis')->onDelete('cascade');
+            $table->foreignUuid('categoria_id')->nullable()->constrained('categorias');
+            $table->text('titulo')->nullable();
+            $table->string('tamanho_projeto')->nullable(); // pequeno, medio, grande
+            $table->string('duracao_estimada')->nullable();
+            $table->string('nivel_experiencia')->nullable(); // iniciante, intermediario, especialista
+            $table->boolean('possibilidade_efetivacao')->default(false);
+            $table->string('tipo_trabalho')->nullable(); // preco_fixo, por_hora
+            $table->float('orcamento_fixo')->nullable();
+            $table->float('taxa_hora_min')->nullable();
+            $table->float('taxa_hora_max')->nullable();
+            $table->text('descricao')->nullable();
 
-        Schema::create('job_batches', function (Blueprint $table) {
-            $table->string('id')->primary();
-            $table->string('name');
-            $table->integer('total_jobs');
-            $table->integer('pending_jobs');
-            $table->integer('failed_jobs');
-            $table->longText('failed_job_ids');
-            $table->mediumText('options')->nullable();
-            $table->integer('cancelled_at')->nullable();
-            $table->integer('created_at');
-            $table->integer('finished_at')->nullable();
-        });
+            $table->string('status')->default('rascunho'); // rascunho, aberto, em_andamento, concluido, cancelado, arquivado
+            $table->uuid('proposta_aceita_id')->nullable(); // FK para propostas (será criada na fase 4)
+            $table->integer('contagem_visualizacoes')->default(0);
+    
+            $table->date('prazo')->nullable();
+            $table->date('expira_em')->nullable();
+            $table->timestamps();
 
-        Schema::create('failed_jobs', function (Blueprint $table) {
-            $table->id();
-            $table->string('uuid')->unique();
-            $table->text('connection');
-            $table->text('queue');
-            $table->longText('payload');
-            $table->longText('exception');
-            $table->timestamp('failed_at')->useCurrent();
+            $table->index('cliente_id');
+            $table->index('categoria_id');
+            $table->index(['status', 'created_at']);
         });
     }
 
@@ -50,8 +45,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('jobs');
-        Schema::dropIfExists('job_batches');
-        Schema::dropIfExists('failed_jobs');
+        Schema::dropIfExists('trabalhos');
     }
 };
