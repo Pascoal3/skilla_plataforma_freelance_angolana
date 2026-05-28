@@ -11,9 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('escrow_transactions', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('transacoes_escrow', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->foreignUuid('contrato_id')->constrained('contratos'); // Será criado na Fase 4, mas a tabela deve existir
+            $table->foreignUuid('carteira_origem_id')->constrained('carteiras');
+            $table->foreignUuid('carteira_destino_id')->constrained('carteiras');
+            $table->decimal('valor', 15, 2);
+            $table->decimal('valor_comissao', 15, 2);
+            $table->decimal('valor_liquido_freelancer', 15, 2);
+            $table->string('status_pagamento')->default('retido'); // retido | liberado | devolvido_cliente
+            $table->string('metodo_liberacao')->nullable(); // aprovacao_cliente | decisao_admin
+            $table->timestamp('retido_em')->useCurrent();
+            $table->timestamp('liberado_em')->nullable();
         });
     }
 
@@ -22,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('escrow_transactions');
+        Schema::dropIfExists('transacoes_escrow');
     }
 };
