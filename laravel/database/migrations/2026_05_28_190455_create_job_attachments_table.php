@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('job_attachments', function (Blueprint $table) {
-            $table->id();
+        Schema::create('trabalho_anexos', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->foreignUuid('trabalho_id')->constrained('trabalhos')->onDelete('cascade');
+            $table->string('nome_arquivo');
+            $table->text('url_arquivo');
+            $table->integer('tamanho_bytes')->nullable();
             $table->timestamps();
         });
     }
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('job_attachments');
+        Schema::dropIfExists('trabalho_anexos');
     }
 };
