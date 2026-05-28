@@ -2,19 +2,21 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Attributes\Description;
-use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
+use App\Models\Job;
+use Carbon\Carbon;
 
-#[Signature('app:expire-inactive-jobs')]
-#[Description('Command description')]
 class ExpireInactiveJobs extends Command
 {
-    /**
-     * Execute the console command.
-     */
+    protected $signature = 'jobs:expire';
+    protected $description = 'Cancela automaticamente trabalhos que ultrapassaram a data de expiração';
+
     public function handle()
     {
-        //
+        $count = Job::where('status', 'aberto')
+                    ->where('expira_em', '<', Carbon::now())
+                    ->update(['status' => 'cancelado']);
+
+        $this->info("O sistema cancelou $count trabalhos expirados.");
     }
 }
