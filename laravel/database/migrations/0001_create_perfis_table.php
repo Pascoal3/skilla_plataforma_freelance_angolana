@@ -4,20 +4,19 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
-    /**
-     * Run the migrations.
-     */
+return new class extends Migration{
     public function up(): void
     {
         Schema::create('perfis', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            // ESTA LINHA É A CHAVE DE TUDO. 
+            // Tem que ser uuid e tem que ser primary!
+            $table->uuid('id')->primary(); 
+            
             $table->string('nome_completo');
             $table->string('nome_usuario')->unique();
             $table->string('email')->unique();
-            $table->string('password_hash');
-            $table->enum('funcao', ['cliente', 'freelancer', 'admin']);
+            $table->string('password_hash'); // ou apenas 'password'
+            $table->string('funcao'); // cliente | freelancer | admin
             $table->text('url_avatar')->nullable();
             $table->text('bio')->nullable();
             $table->string('localizacao')->nullable();
@@ -33,11 +32,10 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+
     public function down(): void
     {
         Schema::dropIfExists('perfis');
-    }
+    
+        }
 };

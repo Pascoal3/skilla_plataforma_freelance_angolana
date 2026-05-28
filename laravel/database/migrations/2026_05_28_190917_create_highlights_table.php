@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('status')->default('ativo');
             $table->integer('creditos_gastos');
             $table->timestamp('inicio_em')->useCurrent();
-            $table->timestamp('expira_em');
+            $table->timestamp('expira_em')->nullable();
             $table->timestamps();
         });
     }

@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('trabalho_anexos', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('trabalho_id')->constrained('trabalhos')->onDelete('cascade');
+            $table->foreignUuid('trabalho_id')
+                  ->constrained('trabalhos')
+                  ->onDelete('cascade');
             $table->string('nome_arquivo');
             $table->text('url_arquivo');
             $table->integer('tamanho_bytes')->nullable();
-            $table->timestamps();
+            $table->timestamp('criado_em')->useCurrent();
         });
     }
 

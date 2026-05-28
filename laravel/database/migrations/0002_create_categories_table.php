@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('categorias', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->uuid('id')->primary(); // OBRIGATÓRIO ser uuid e primary
             $table->string('nome')->unique();
             $table->string('slug')->unique();
             $table->text('url_icone')->nullable();

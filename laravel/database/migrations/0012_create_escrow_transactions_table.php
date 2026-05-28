@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('transacoes_escrow', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('contrato_id')->constrained('contratos'); // Será criado na Fase 4, mas a tabela deve existir
+            $table->foreignUuid('contrato_id')->constrained('contratos')->onDelete('cascade');
             $table->foreignUuid('carteira_origem_id')->constrained('carteiras');
             $table->foreignUuid('carteira_destino_id')->constrained('carteiras');
             $table->decimal('valor', 15, 2);

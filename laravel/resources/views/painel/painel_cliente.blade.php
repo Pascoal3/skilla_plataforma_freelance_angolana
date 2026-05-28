@@ -3,10 +3,10 @@
 <html lang="pt-AO"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Skilla - Painel de cliente</title>
+<title>Skilla - Client Dashboard</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -117,23 +117,23 @@
 <aside class="hidden md:flex fixed left-0 top-0 h-full flex-col py-6 bg-[#1A1A1A] border-r border-[#1A1A1A] w-64 md:w-72 z-40">
 <div class="px-6 mb-8">
 <h1 class="text-headline-md font-headline-md font-bold text-white">Skilla</h1>
-<p class="text-body-sm font-body-sm text-gray-300">Marketplace de freelancers</p>
+<p class="text-body-sm font-body-sm text-gray-300">Freelance Marketplace</p>
 </div>
 <nav class="flex-1 px-4 space-y-1">
 <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-[#CCFF00] text-[#1A1A1A] scale-[0.98] transition-transform duration-150" href="#">
-<span class="material-symbols-outlined text-[20px]">Painel</span>
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
 <span class="text-label-md font-label-md">Painel</span>
 </a>
 <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white hover:bg-gray-800 transition-colors" href="#">
-<span class="material-symbols-outlined text-[20px]">Trabalho</span>
-<span class="text-label-md font-label-md">Os Meus Jobs</span>
+<span class="material-symbols-outlined text-[20px]">work</span>
+<span class="text-label-md font-label-md">Os Meus Trabalhos</span>
 </a>
 <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white hover:bg-gray-800 transition-colors" href="#">
-<span class="material-symbols-outlined text-[20px]">Descrição</span>
+<span class="material-symbols-outlined text-[20px]">description</span>
 <span class="text-label-md font-label-md">Propostas Recebidas</span>
 </a>
 <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white hover:bg-gray-800 transition-colors" href="#">
-<span class="material-symbols-outlined text-[20px]">email</span>
+<span class="material-symbols-outlined text-[20px]">mail</span>
 <span class="text-label-md font-label-md">Mensagens</span>
 </a>
 <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-white hover:bg-gray-800 transition-colors" href="#">
@@ -179,8 +179,8 @@
 <span class="absolute top-2 right-2 w-2 h-2 bg-status-warning-text rounded-full"></span>
 </button>
 <button class="flex items-center gap-2 hover:bg-light-gray p-1 pr-3 rounded-full transition-colors border border-transparent hover:border-border-subtle">
-<img alt="User avatar" class="w-8 h-8 rounded-full border border-border-subtle" data-alt="A professional headshot of a young male professional smiling warmly. The photo has a clean, bright, and modern aesthetic with soft, natural lighting. The background is slightly blurred to maintain focus on the subject. The image conveys trust and approachability, suitable for a professional SaaS platform avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1ucMdMU_7Wde743nPaVy6R4_3tNC-9Jzf2suJACtNsJGv8W1aPgTbm4oS_YSgHDypbrahvLDSMmgV5JuvYmD4G-GFpE-fXaUr8Np-kZvbCQLkSDIbbhQSpnQnx4puIRGzQ5ZLQDzYizUu4MitddrdXxO1FXLE4SU71a8l6aelOr-_sryULY2sGbkIgedxX7jGI1lhKhUxaUWc_ZAUlq2h70KUwyOYLEIHzF7UOVKIwhoLnOYWQ3Amc-OBFcKrkSaYjwler6L0ZIc"/>
-<span class="text-label-md font-label-md hidden sm:block">Rafael</span>
+<img alt="User avatar" class="w-8 h-8 rounded-full border border-border-subtle" data-alt="foto_perfil" src="/img/foto_perfil_exemplar.png"/>
+<span class="text-label-md font-label-md hidden sm:block">Pascoal</span>
 <span class="material-symbols-outlined text-[18px] hidden sm:block text-secondary">expand_more</span>
 </button>
 </div>
@@ -190,12 +190,12 @@
 <!-- Greeting -->
 <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-2">
 <div>
-<h2 class="text-headline-lg font-headline-lg text-on-surface mb-1">Olá, Rafael 👋</h2>
+<h2 class="text-headline-lg font-headline-lg text-on-surface mb-1">Olá, Pascoal 👋</h2>
 <p class="text-body-md font-body-md text-secondary">Tens <span class="font-semibold text-primary">4 propostas novas</span> à espera de revisão.</p>
 </div>
 <button class="bg-[#1A1A1A] text-white text-label-md font-label-md px-4 py-2 rounded-lg hover:bg-black transition-colors flex items-center gap-2">
 <span class="material-symbols-outlined text-[18px]">add</span>
-                    Publicar Job
+                    Publicar Trabalho
                 </button>
 </div>
 <!-- Metrics Grid -->
@@ -207,7 +207,7 @@
 </div>
 </div>
 <div>
-<h3 class="text-label-md font-label-md text-secondary uppercase tracking-wider mb-1">Jobs Publicados</h3>
+<h3 class="text-label-md font-label-md text-secondary uppercase tracking-wider mb-1">Trabalhos Publicados</h3>
 <p class="text-metric-lg font-metric-lg text-on-surface">3</p>
 </div>
 </div>

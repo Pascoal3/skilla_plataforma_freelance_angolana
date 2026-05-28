@@ -35,3 +35,19 @@ Route::prefix('contracts')->group(function () {
 
 // Avaliações
 Route::post('/reviews', [ReviewController::class, 'store']);
+
+use App\Http\Controllers\ChatController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\HighlightController;
+
+Route::prefix('chat')->group(function () {
+    Route::post('/send', [ChatController::class, 'send']);
+    Route::get('/{conversaId}/messages', [ChatController::class, 'messages']);
+});
+
+Route::prefix('notifications')->group(function () {
+    Route::get('/', [NotificationController::class, 'index']);
+    Route::patch('/{id}/read', [NotificationController::class, 'markAsRead']);
+});
+
+Route::post('/highlight', [HighlightController::class, 'store']);

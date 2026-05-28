@@ -34,3 +34,7 @@ Route::prefix('profiles')->group(function () {
     Route::put('/{id}', [ProfileController::class, 'update']);
     Route::post('/{id}/skills', [ProfileController::class, 'updateSkills']);
 });
+
+Route::get('painel/cliente/teste', function (){
+    return view('painel.painel_cliente');
+});
