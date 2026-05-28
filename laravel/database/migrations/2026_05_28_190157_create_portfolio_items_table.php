@@ -11,8 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('portfolio_items', function (Blueprint $table) {
-            $table->id();
+        Schema::create('itens_portfolio', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->foreignUuid('freelancer_id')->constrained('perfis')->onDelete('cascade');
+            $table->string('titulo');
+            $table->text('descricao')->nullable();
+            $table->text('url_imagem');
+            $table->text('url_projeto')->nullable();
+            $table->foreignUuid('categoria_id')->nullable()->constrained('categorias');
             $table->timestamps();
         });
     }
@@ -22,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('portfolio_items');
+        Schema::dropIfExists('itens_portfolio');
     }
 };

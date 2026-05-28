@@ -11,8 +11,24 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('profiles', function (Blueprint $table) {
-            $table->id();
+        Schema::create('perfis', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('nome_completo');
+            $table->string('nome_usuario')->unique();
+            $table->string('email')->unique();
+            $table->string('password_hash');
+            $table->enum('funcao', ['cliente', 'freelancer', 'admin']);
+            $table->text('url_avatar')->nullable();
+            $table->text('bio')->nullable();
+            $table->string('localizacao')->nullable();
+            $table->string('telefone')->nullable();
+            $table->integer('saldo_creditos')->default(10);
+            $table->boolean('esta_destacado')->default(false);
+            $table->timestamp('destaque_expira_em')->nullable();
+            $table->float('avaliacao_media')->default(0);
+            $table->integer('total_avaliacoes')->default(0);
+            $table->integer('total_trabalhos_concluidos')->default(0);
+            $table->boolean('esta_ativo')->default(true);
             $table->timestamps();
         });
     }
@@ -22,6 +38,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('profiles');
+        Schema::dropIfExists('perfis');
     }
 };
