@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reviews', function (Blueprint $table) {
-            $table->id();
+        Schema::create('avaliacoes', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->foreignUuid('contrato_id')->constrained('contratos')->onDelete('cascade');
+            $table->foreignUuid('avaliador_id')->constrained('perfis')->onDelete('cascade');
+            $table->foreignUuid('avaliado_id')->constrained('perfis')->onDelete('cascade');
+            $table->integer('nota'); // 1 a 5
+            $table->text('comentario')->nullable();
             $table->timestamps();
         });
     }
@@ -22,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reviews');
+        Schema::dropIfExists('avaliacoes');
     }
 };

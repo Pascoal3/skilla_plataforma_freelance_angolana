@@ -11,8 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('disputes', function (Blueprint $table) {
-            $table->id();
+        Schema::create('disputas', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->foreignUuid('contrato_id')->constrained('contratos')->onDelete('cascade');
+            $table->foreignUuid('aberta_por')->constrained('perfis')->onDelete('cascade');
+            $table->text('motivo');
+            // aberta, em_analise, resolvida_cliente, resolvida_freelancer, acordo_mutuo
+            $table->string('status')->default('aberta');
+            $table->text('decisao_admin')->nullable();
+            $table->timestamp('resolvida_em')->nullable();
             $table->timestamps();
         });
     }
@@ -22,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('disputes');
+        Schema::dropIfExists('disputas');
     }
 };
