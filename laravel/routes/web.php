@@ -26,3 +26,11 @@ Route::get('/registar/cliente', function () {
 Route::get('/registar/freelancer', function () {
     return view('registar.freelancer');
 })->name('registar.freelancer');
+
+use App\Http\Controllers\ProfileController;
+
+Route::prefix('profiles')->group(function () {
+    Route::get('/{id}', [ProfileController::class, 'show']);
+    Route::put('/{id}', [ProfileController::class, 'update']);
+    Route::post('/{id}/skills', [ProfileController::class, 'updateSkills']);
+});
