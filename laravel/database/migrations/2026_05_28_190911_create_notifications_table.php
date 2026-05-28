@@ -11,8 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('notifications', function (Blueprint $table) {
-            $table->id();
+        Schema::create('notificacoes', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->foreignUuid('usuario_id')->constrained('perfis')->onDelete('cascade');
+            $table->string('tipo'); // proposta_recebida, pagamento_liberado, disputa_aberta, etc
+            $table->string('titulo');
+            $table->text('corpo');
+            $table->uuid('id_referencia')->nullable(); // ID do Job ou Contrato
+            $table->string('tipo_referencia')->nullable(); // 'Job', 'Contract'
+            $table->boolean('lida')->default(false);
             $table->timestamps();
         });
     }
@@ -22,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('notifications');
+        Schema::dropIfExists('notificacoes');
     }
 };
