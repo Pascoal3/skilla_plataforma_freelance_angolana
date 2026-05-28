@@ -11,9 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('messages', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('mensagens', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->foreignUuid('conversa_id')->constrained('conversas')->onDelete('cascade');
+            $table->foreignUuid('remetente_id')->constrained('perfis')->onDelete('cascade');
+            $table->text('conteudo')->nullable();
+            $table->string('tipo_mensagem')->default('texto'); // texto, arquivo
+            $table->text('url_arquivo')->nullable();
+            $table->string('nome_arquivo')->nullable();
+            $table->integer('tamanho_arquivo')->nullable();
+            $table->boolean('lida')->default(false);
+            $table->timestamp('criado_em')->useCurrent();
         });
     }
 
@@ -22,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('messages');
+        Schema::dropIfExists('mensagens');
     }
 };
