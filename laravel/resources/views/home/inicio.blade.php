@@ -683,16 +683,20 @@
 <div class="border-b lg:border-b-0 lg:border-r border-white/20 pb-12 lg:pb-0 lg:pr-12">
 <h3 class="font-display-lg text-5xl uppercase mb-6 leading-tight">Precisa de um <span class="italic">Expert?</span></h3>
 <p class="text-blue-100 text-lg mb-10">Contrate os melhores freelancers de Angola agora e tire a sua ideia do papel.</p>
-<button class="px-10 py-5 bg-white text-primary-container font-black rounded-full uppercase tracking-widest hover:bg-secondary-fixed hover:text-slate-900 transition-all flex items-center gap-3">
-                        Postar Trabalho <i class="fa-solid fa-circle-plus material-symbols-outlined"></i>
-</button>
+<a href="{{ route('registar.cliente') }}">
+    <button class="px-10 py-5 bg-white text-primary-container font-black rounded-full uppercase tracking-widest hover:bg-secondary-fixed hover:text-slate-900 transition-all flex items-center gap-3">
+                            Postar Trabalho <i class="fa-solid fa-circle-plus material-symbols-outlined"></i>
+    </button>
+</a>
 </div>
 <div class="lg:pl-12">
 <h3 class="font-display-lg text-5xl uppercase mb-6 leading-tight">Quer ser um <span class="italic text-secondary-fixed">Skillano?</span></h3>
 <p class="text-blue-100 text-lg mb-10">Trabalhe em projetos incríveis e seja pago no prazo. Sua carreira começa aqui.</p>
-<button class="px-10 py-5 bg-slate-950 text-white font-black rounded-full uppercase tracking-widest hover:bg-white hover:text-slate-950 transition-all flex items-center gap-3">
-                        Criar Perfil <i class="fa-solid fa-user-plus material-symbols-outlined"></i>
-</button>
+<a href="{{ route('registar.freelancer') }}">
+    <button class="px-10 py-5 bg-slate-950 text-white font-black rounded-full uppercase tracking-widest hover:bg-white hover:text-slate-950 transition-all flex items-center gap-3">
+                            Criar Perfil <i class="fa-solid fa-user-plus material-symbols-outlined"></i>
+    </button>
+</a>
 </div>
 </div>
 <!-- Decor circles -->
