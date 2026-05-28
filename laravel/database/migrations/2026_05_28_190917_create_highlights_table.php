@@ -12,7 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('highlights', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->foreignUuid('freelancer_id')->constrained('perfis')->onDelete('cascade');
+            $table->string('status')->default('ativo');
+            $table->integer('creditos_gastos');
+            $table->timestamp('inicio_em')->useCurrent();
+            $table->timestamp('expira_em');
             $table->timestamps();
         });
     }
