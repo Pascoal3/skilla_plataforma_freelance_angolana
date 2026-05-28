@@ -2,31 +2,37 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\ProfileService;
-use App\Models\Profile;
+use App\Services\ProposalService;
+use App\Services\EscrowService;
 use Illuminate\Http\Request;
 
-class ProfileController extends Controller {
-    protected $profileService;
+class ProposalController extends Controller {
+    protected $proposalService;
 
-    public function __construct(ProfileService $profileService) {
-        $this->profileService = $profileService;
+    public function __construct(ProposalService $proposalService) {
+        $this->proposalService = $proposalService;
     }
 
-    public function show($id) {
-        $profile = Profile::with('skills', 'portfolio')->findOrFail($id);
-        return response()->json($profile);
+    public function store(Request $request) {
+        try {
+            $freelancerId = $request->header('X-User-Id');
+            $proposal = $this->proposalService->sendProposal($request->all(), $freelancerId);
+            return response()->json($proposal, 201);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
     }
 
-    public function update(Request $request, $id) {
-        $profile = Profile::findOrFail($id);
-        $updated = $this->profileService->updateProfile($profile, $request->all());
-        return response()->json($updated);
-    }
-
-    public function updateSkills(Request $request, $id) {
-        $profile = Profile::findOrFail($id);
-        $this->profileService->syncSkills($profile, $request->skills);
-        return response()->json(['message' => 'Habilidades atualizadas!']);
+    public function accept(Request $request, $id, EscrowService $escrowService) {
+        try {
+            $clientId = $request->header('X-User-Id');
+            $contract = $this->proposalService->acceptProposal($id, $clientId, $escrowService);
+            return response()->json([
+                'message' => 'Proposta aceita e fundos retidos no Escrow!',
+                'contract' => $contract
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
     }
 }
