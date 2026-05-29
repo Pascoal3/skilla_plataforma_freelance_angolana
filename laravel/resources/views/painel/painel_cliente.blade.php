@@ -117,7 +117,7 @@
 <aside class="hidden md:flex fixed left-0 top-0 h-full flex-col py-6 bg-[#1A1A1A] border-r border-[#1A1A1A] w-64 md:w-72 z-40">
 <div class="px-6 mb-8">
 <h1 class="text-headline-md font-headline-md font-bold text-white">Skilla</h1>
-<p class="text-body-sm font-body-sm text-gray-300">Freelance Marketplace</p>
+<p class="text-body-sm font-body-sm text-gray-300">Plataforma Freelance</p>
 </div>
 <nav class="flex-1 px-4 space-y-1">
 <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-[#CCFF00] text-[#1A1A1A] scale-[0.98] transition-transform duration-150" href="#">

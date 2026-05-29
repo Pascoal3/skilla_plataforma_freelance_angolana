@@ -129,12 +129,12 @@
 <nav class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
 <div class="text-2xl font-black text-slate-950 italic font-h1 tracking-tighter"><img id="logo_plataforma" src="{{ asset('img/logo_skilla8_invertido-removebg-preview.png') }}" alt=""></div>
 <div class="hidden md:flex items-center gap-8">
-<a class="text-slate-400 hover:text-slate-950 transition-colors font-label-caps uppercase text-label-caps" href="#">How it Works</a>
+<a class="text-slate-400 hover:text-slate-950 transition-colors font-label-caps uppercase text-label-caps" href="#">Como funciona</a>
 <a class="text-slate-400 hover:text-slate-950 transition-colors font-label-caps uppercase text-label-caps" href="#">Freelancers</a>
-<a class="text-slate-400 hover:text-slate-950 transition-colors font-label-caps uppercase text-label-caps" href="#">Categories</a>
+<a class="text-slate-400 hover:text-slate-950 transition-colors font-label-caps uppercase text-label-caps" href="#">Categorias</a>
 </div>
 <div class="flex items-center gap-4">
-<a class="text-[#D6FF2A] font-bold text-sm font-label-caps hover:brightness-90 transition-all" href="#">Candidatar-se como talento</a>
+<a href="{{ route('registar.freelancer') }}" class=" font-bold text-sm font-label-caps hover:brightness-90 transition-all" href="#" style="color: black;">Candidatar-se como talento</a>
 </div>
 </nav>
 </header>
@@ -152,7 +152,7 @@
 <label class="font-label-caps text-label-caps uppercase text-slate-500">Primeiro nome</label>
 <input class="w-full bg-slate-50 border-b-2 border-slate-200 focus:border-primary-container focus:ring-0 py-4 px-0 transition-all font-body-md text-slate-900 placeholder:text-slate-300" placeholder="Ex: Edson" type="text"/>
 <span id="first-name-error" class="text-error text-sm font-medium mt-1 flex items-center gap-1 hidden">
-<span class="material-symbols-outlined text-[16px]">error</span>
+<span class="material-symbols-outlined text-[16px]" style="display:hidden;">error</span>
                         ❌ Por favor, insira seu primeiro nome
                     </span>
 </div>
@@ -160,7 +160,7 @@
 <label class="font-label-caps text-label-caps uppercase text-slate-500">Sobrenome</label>
 <input class="w-full bg-slate-50 border-b-2 border-slate-200 focus:border-primary-container focus:ring-0 py-4 px-0 transition-all font-body-md text-slate-900 placeholder:text-slate-300" placeholder="Ex: Manuel" type="text"/>
 <span id="last-name-error" class="text-error text-sm font-medium mt-1 flex items-center gap-1 hidden">
-<span class="material-symbols-outlined text-[16px]">error</span>
+<span class="material-symbols-outlined text-[16px]" style="display:hidden;">error</span>
                         ❌ Por favor, insira seu sobrenome
                     </span>
 </div>
@@ -172,7 +172,7 @@
 <input class="w-full bg-slate-50 border-b-2 border-slate-200 focus:border-primary-container focus:ring-0 py-4 px-0 transition-all font-body-md text-slate-900" type="email"/>
 </div>
 <span id="email-error" class="text-error text-sm font-medium mt-1 flex items-center gap-1 hidden">
-<span class="material-symbols-outlined text-[16px]">error</span>
+<span class="material-symbols-outlined text-[16px]" style="display:hidden;">error</span>
                         ❌ Por favor, insira um endereço de e-mail válido
                     </span>
 </div>
@@ -186,7 +186,7 @@
 </button>
 </div>
 <span id="password-error" class="text-error text-sm font-medium mt-1 flex items-center gap-1 hidden">
-<span class="material-symbols-outlined text-[16px]">error</span>
+<span class="material-symbols-outlined text-[16px]" style="display:hidden;">error</span>
                         ❌ A senha deve ter pelo menos 8 caracteres
                     </span>
 </div>
@@ -202,7 +202,7 @@
 <option value="huila">Huíla</option>
 </select>
 <span id="province-error" class="text-error text-sm font-medium mt-1 flex items-center gap-1 hidden">
-<span class="material-symbols-outlined text-[16px]">error</span>
+<span class="material-symbols-outlined text-[16px]" style="display:hidden;">error</span>
                         ❌ Por favor, selecione uma província
                     </span>
 </div>
@@ -220,7 +220,7 @@
 </div>
 <span class="text-body-md text-slate-600 leading-tight">Eu li e concordo com os <a class="text-[#D6FF2A] hover:underline font-medium transition-all" href="#">Termos de Serviço</a> e a <a class="text-[#D6FF2A] hover:underline font-medium transition-all" href="#">Política de Privacidade</a>.</span>
 <span id="terms-error" class="text-error text-sm font-medium mt-1 flex items-center gap-1 hidden">
-<span class="material-symbols-outlined text-[16px]">error</span>
+<span class="material-symbols-outlined text-[16px]" style="display:hidden;">error</span>
                         ❌ Você deve aceitar os Termos de Serviço e Política de Privacidade
                     </span>
 </label>
@@ -246,8 +246,8 @@
 <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
 <div class="text-xl font-black text-slate-950 italic font-h1">SKILLA</div>
 <div class="text-slate-400 font-body-md text-sm">
-                © 2024 SKILLA. High-Performance Freelancing in Angola.
-            </div>
+    © 2026 SKILLA. Freelance de alta performance em Angola.
+</div>
 <div class="flex gap-6">
 <a class="text-slate-400 hover:text-[#D6FF2A] transition-all font-label-caps text-label-caps uppercase" href="#">Terms</a>
 <a class="text-slate-400 hover:text-[#D6FF2A] transition-all font-label-caps text-label-caps uppercase" href="#">Privacy</a>

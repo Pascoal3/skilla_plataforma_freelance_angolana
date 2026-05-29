@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 
-<html class="dark" lang="pt-AO"><head>
+<html class="dark" lang="pt-AO">
+
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>SKILLA | A Maior Rede de Freelancers de Angola</title>
+<link rel="icon" type="image/x-icon" href="/favicon.svg">
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">

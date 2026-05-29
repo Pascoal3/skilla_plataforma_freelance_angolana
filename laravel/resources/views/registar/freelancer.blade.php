@@ -1,7 +1,7 @@
 <!DOCTYPE html><html class="dark" lang="pt-AO" style=""><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Cadastro de Cliente | SKILLA</title>
+<title>Cadastro de Freelancer | SKILLA</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
@@ -109,12 +109,12 @@
 <nav class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
 <div class="text-2xl font-black text-slate-950 italic font-h1 tracking-tighter">SKILLA</div>
 <div class="hidden md:flex items-center gap-8">
-<a class="text-slate-400 hover:text-slate-950 transition-colors font-label-caps uppercase text-label-caps" href="#">How it Works</a>
-<a class="text-slate-400 hover:text-slate-950 transition-colors font-label-caps uppercase text-label-caps" href="#">Freelancers</a>
-<a class="text-slate-400 hover:text-slate-950 transition-colors font-label-caps uppercase text-label-caps" href="#">Categories</a>
+<a class="text-slate-400 hover:text-slate-950 transition-colors font-label-caps uppercase text-label-caps" href="#">Como funciona</a>
+<a class="text-slate-400 hover:text-slate-950 transition-colors font-label-caps uppercase text-label-caps" href="#">Trabalhos</a>
+<a class="text-slate-400 hover:text-slate-950 transition-colors font-label-caps uppercase text-label-caps" href="#">Categorias</a>
 </div>
 <div class="flex items-center gap-4">
-<a class="font-bold text-sm font-label-caps hover:brightness-90 transition-all" href="#" style="color: rgb(225, 240, 177);">Aqui para contratar talentos? Junte-se como Cliente</a>
+<a href="{{ route('registar.cliente') }}" class="font-bold text-sm font-label-caps hover:brightness-90 transition-all" href="#" style="color: black;">Aqui para contratar talentos? Junte-se como Cliente</a>
 </div>
 </nav>
 </header>
@@ -140,7 +140,7 @@
 <div class="flex flex-col gap-2">
 <label class="font-label-caps text-label-caps uppercase text-slate-500">E-MAIL</label>
 <div class="relative">
-<input class="w-full bg-slate-50 border-b-2 border-error focus:border-error focus:ring-0 py-4 px-0 transition-all font-body-md text-slate-900" type="email" value="edson.manuel@invalid">
+<input class="w-full bg-slate-50 border-b-2 border-error focus:border-error focus:ring-0 py-4 px-0 transition-all font-body-md text-slate-900" type="email" placeholder="Ex: maria@gmail.com">
 </div>
 <span class="text-error text-sm font-medium mt-1 flex items-center gap-1">
 <span class="material-symbols-outlined text-[16px]">error</span>
@@ -206,8 +206,8 @@
 <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
 <div class="text-xl font-black text-slate-950 italic font-h1">SKILLA</div>
 <div class="text-slate-400 font-body-md text-sm">
-                © 2024 SKILLA. High-Performance Freelancing in Angola.
-            </div>
+                © 2026 SKILLA. Freelance de alta performance em Angola.
+</div>
 <div class="flex gap-6">
 <a class="text-slate-400 hover:text-[#D6FF2A] transition-all font-label-caps text-label-caps uppercase" href="#">Terms</a>
 <a class="text-slate-400 hover:text-[#D6FF2A] transition-all font-label-caps text-label-caps uppercase" href="#">Privacy</a>

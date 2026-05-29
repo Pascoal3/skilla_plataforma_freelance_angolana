@@ -38,3 +38,6 @@ Route::prefix('profiles')->group(function () {
 Route::get('painel/cliente/teste', function (){
     return view('painel.painel_cliente');
 });
+Route::get('painel/freelancer/teste', function (){
+    return view('painel.painel_freelancer');
+});
