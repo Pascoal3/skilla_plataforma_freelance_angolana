@@ -55,3 +55,15 @@ Route::get('painel/freelancer/teste', function (){
 Route::get('/login/teste', function (){
     return view('registar.tela_login');
 });
+
+// Páginas de cadastro (GET - mostrar formulário)
+Route::get('/registar/cliente', function () {
+    return view('auth.register-cliente');
+})->name('registar.cliente');
+
+Route::get('/registar/freelancer', function () {
+    return view('auth.register-freelancer');
+})->name('registar.freelancer');
+
+// Processar cadastro (POST - receber dados)
+Route::post('/registar', [AuthController::class, 'registar'])->name('registar');

@@ -6,6 +6,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -230,6 +231,182 @@
 </div>
 </div>
 </footer>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // --- Seleção de Elementos ---
+    const form = document.querySelector('form');
+    const submitButton = document.querySelector('button[type="button"]:not(#toggle-password)');
+    
+    // Inputs (Seletores baseados no seu HTML)
+    const inputs = {
+        primeiro_nome: document.querySelector('input[placeholder="Ex: Edson"]'),
+        sobrenome: document.querySelector('input[placeholder="Ex: Manuel"]'),
+        email: document.querySelector('input[type="email"]'),
+        password: document.querySelector('input[placeholder*="Senha"]'),
+        provincia: document.querySelector('select'),
+        terms: document.getElementById('terms-checkbox')
+    };
+
+    // Spans de Erro (IDs do seu HTML)
+    const errors = {
+        primeiro_nome: document.getElementById('first-name-error'),
+        sobrenome: document.getElementById('last-name-error'),
+        email: document.getElementById('email-error'),
+        password: document.getElementById('password-error'),
+        provincia: document.getElementById('province-error'),
+        terms: document.getElementById('terms-error')
+    };
+
+    // Overlay de Loading (Classe do seu HTML)
+    const loadingOverlay = document.querySelector('.fixed.inset-0.z-\\[100\\]'); 
+    
+    // Overlay de Sucesso (Assumindo que você incluiu o arquivo no final do body)
+    // Se não incluiu, o JS abaixo criará um dinamicamente ou você pode usar window.location direto.
+    const successOverlay = document.getElementById('success-overlay-container'); 
+
+    // --- Funções Auxiliares ---
+
+    function toggleLoading(show) {
+        if (show) {
+            if(loadingOverlay) loadingOverlay.classList.remove('hidden');
+            if(submitButton) {
+                submitButton.disabled = true;
+                submitButton.classList.add('opacity-50', 'cursor-not-allowed');
+            }
+        } else {
+            if(loadingOverlay) loadingOverlay.classList.add('hidden');
+            if(submitButton) {
+                submitButton.disabled = false;
+                submitButton.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+        }
+    }
+
+    function clearErrors() {
+        Object.values(errors).forEach(el => {
+            if(el) {
+                el.classList.add('hidden');
+                // Remove borda vermelha se existir
+                const input = el.previousElementSibling?.querySelector('input, select');
+                if(input) input.classList.remove('border-error', 'border-[#ff4ab]'); 
+            }
+        });
+    }
+
+    function showFieldError(fieldKey, message) {
+        if (errors[fieldKey]) {
+            errors[fieldKey].classList.remove('hidden');
+            const textSpan = errors[fieldKey].querySelector('span:last-child');
+            if(textSpan) textSpan.textContent = message;
+            
+            // Adiciona borda de erro visual
+            let input;
+            if(fieldKey === 'terms') input = inputs.terms;
+            else if(fieldKey === 'provincia') input = inputs.provincia;
+            else input = document.querySelector(`input[placeholder*="${fieldKey === 'primeiro_nome' ? 'Edson' : (fieldKey === 'sobrenome' ? 'Manuel' : '')}"]`) || 
+                         document.querySelector(`input[type="${fieldKey === 'email' ? 'email' : 'password'}"]`);
+            
+            if(input) {
+                input.classList.add('border-error'); // Certifique-se que essa classe existe ou use style inline
+                input.style.borderColor = '#ff4ab'; 
+            }
+        }
+    }
+
+    // --- Lógica de Submit ---
+
+    submitButton.addEventListener('click', async function(e) {
+        e.preventDefault();
+        clearErrors();
+
+        // Validação simples de termos antes de enviar
+        if (!inputs.terms.checked) {
+            showFieldError('terms', 'Você deve aceitar os Termos de Serviço e Política de Privacidade');
+            return;
+        }
+
+        // Preparar Dados
+        const formData = new FormData();
+        formData.append('primeiro_nome', inputs.primeiro_nome.value);
+        formData.append('sobrenome', inputs.sobrenome.value);
+        formData.append('email', inputs.email.value);
+        formData.append('password', inputs.password.value);
+        formData.append('provincia_id', inputs.provincia.value);
+        
+        // Define a função baseada na página atual
+        const isClientePage = document.title.includes('Cliente'); 
+        formData.append('funcao', isClientePage ? 'cliente' : 'freelancer'); 
+
+        toggleLoading(true);
+
+        try {
+            const response = await fetch('/registar', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                    'Accept': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                // SUCESSO
+                toggleLoading(false);
+                
+                // Mostrar overlay de sucesso por 3 segundos
+                // Se você tiver o include do overlay de sucesso, remova a classe hidden dele
+                if(successOverlay) successOverlay.classList.remove('hidden');
+                else {
+                    // Fallback visual se não houver overlay HTML pronto
+                    alert('Cadastro realizado com sucesso! Redirecionando...');
+                }
+
+                setTimeout(() => {
+                    // Redirecionamento baseado no role retornado
+                    if (data.role === 'cliente') {
+                        window.location.href = '/painel/cliente'; // Ajuste sua rota
+                    } else {
+                        window.location.href = '/painel/freelancer'; // Ajuste sua rota
+                    }
+                }, 3000);
+
+            } else if (response.status === 422) {
+                // ERRO DE VALIDAÇÃO
+                toggleLoading(false);
+                
+                if (data.errors) {
+                    const errorMap = {
+                        'primeiro_nome': 'primeiro_nome',
+                        'sobrenome': 'sobrenome',
+                        'email': 'email',
+                        'password': 'password',
+                        'provincia_id': 'provincia'
+                    };
+
+                    for (const [key, messages] of Object.entries(data.errors)) {
+                        const frontendKey = errorMap[key];
+                        if (frontendKey) {
+                            showFieldError(frontendKey, messages[0]);
+                        }
+                    }
+                }
+            } else {
+                // ERRO DO SERVIDOR
+                toggleLoading(false);
+                alert('Ocorreu um erro inesperado. Tente novamente.');
+            }
+
+        } catch (error) {
+            toggleLoading(false);
+            console.error('Erro:', error);
+            alert('Erro de conexão. Verifique sua internet.');
+        }
+    });
+});
+</script>
 </body>
 
 </html>

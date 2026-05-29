@@ -2,78 +2,53 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\RegisterRequest;
+use Illuminate\Http\Request;
 use App\Models\Perfil;
-use App\Models\Carteira;
-use Illuminate\Support\Facades\DB;
+use App\Models\Provincia;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Tymon\JWTAuth\Facades\JWTAuth; // Assumindo uso de Tymon JWT
+use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
-    public function registar(RegisterRequest $request)
+    public function registar(Request $request)
     {
-        try {
-            $perfil = DB::transaction(function () use ($request) {
-                // 1. Gerar Username Único (ex: edsonmanuel1234)
-                $baseUsername = strtolower($request->primeiro_nome . $request->sobrenome);
-                $username = $baseUsername . rand(1000, 9999);
-                
-                while (Perfil::where('username', $username)->exists()) {
-                    $username = $baseUsername . rand(1000, 9999);
-                }
+        Log::info('Tentativa de registro:', $request->all());
 
-                // 2. Criar Perfil
-                $perfil = Perfil::create([
-                    'primeiro_nome' => $request->primeiro_nome,
-                    'sobrenome' => $request->sobrenome,
-                    'email' => $request->email,
-                    'password' => Hash::make($request->password),
-                    'username' => $username,
-                    'provincia_id' => $request->provincia_id,
-                    'funcao' => $request->funcao,
-                    'email_verified_at' => now(),
-                ]);
+        $validated = $request->validate([
+            'primeiro_nome' => 'required|string|max:255',
+            'sobrenome'     => 'required|string|max:255',
+            'email'         => 'required|email|unique:perfis,email',
+            'password'      => 'required|string|min:8',
+            'provincia_id'  => 'required|string',
+            'funcao'        => 'required|in:cliente,freelancer',
+        ]);
 
-                // 3. Criar Carteira com saldo inicial
-                Carteira::create([
-                    'perfil_id' => $perfil->id,
-                    'saldo' => 10.00,
-                ]);
+        // Buscar a província pelo slug enviado do frontend
+        $provincia = Provincia::where('nome', 'LIKE', 
+            '%' . str_replace('-', ' ', $validated['provincia_id']) . '%'
+        )->first();
 
-                return $perfil;
-            });
-
-            // 4. Gerar Token JWT
-            $token = JWTAuth::fromUser($perfil);
-
-            // 5. Resposta JSON com Cookie HttpOnly
-            $response = response()->json([
-                'status' => 201,
-                'message' => 'Conta criada com sucesso!',
-                'role' => $perfil->funcao,
-            ], 201);
-
-            $response->withCookie(cookie(
-                'jwt_token', 
-                $token, 
-                60, // minutos
-                '/', 
-                null, 
-                true, // Secure (HTTPS)
-                true, // HttpOnly
-                false, 
-                'Strict' // SameSite
-            ));
-
-            return $response;
-
-        } catch (\Exception $e) {
+        if (!$provincia) {
             return response()->json([
-                'status' => 500,
-                'message' => 'Erro ao criar conta.',
-                'error' => $e->getMessage()
-            ], 500);
+                'errors' => ['provincia_id' => ['Província não encontrada']]
+            ], 422);
         }
+
+        $user = Perfil::create([
+            'primeiro_nome' => $validated['primeiro_nome'],
+            'sobrenome'     => $validated['sobrenome'],
+            'email'         => $validated['email'],
+            'password'      => Hash::make($validated['password']),
+            'provincia_id'  => $provincia->id,
+            'funcao'        => $validated['funcao'],
+        ]);
+
+        Auth::login($user);
+
+        return response()->json([
+            'message' => 'Conta criada com sucesso!',
+            'role'    => $user->funcao,
+        ], 201);
     }
 }

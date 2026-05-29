@@ -1,24 +1,61 @@
 <?php
 
 namespace App\Models;
-use App\Traits\HasUuid;
-use Illuminate\Database\Eloquent\Model;
 
-class Profile extends Model {
-    use HasUuid;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
+
+class Perfil extends Authenticatable
+{
+    use HasFactory, Notifiable;
+
     protected $table = 'perfis';
+    
+    // UUID ao invés de auto-increment
+    public $incrementing = false;
+    protected $keyType = 'string';
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            if (empty($model->{$model->getKeyName()})) {
+                $model->{$model->getKeyName()} = Str::uuid()->toString();
+            }
+        });
+    }
+
     protected $fillable = [
-        'nome_completo', 'nome_usuario', 'email', 'password_hash', 'funcao', 
-        'url_avatar', 'bio', 'localizacao', 'telefone', 'saldo_creditos', 
-        'esta_destacado', 'destaque_expira_em', 'avaliacao_media', 
-        'total_avaliacoes', 'total_trabalhos_concluidos', 'esta_ativo'
+        'primeiro_nome',
+        'sobrenome',
+        'email',
+        'password',
+        'funcao',
+        'provincia_id',
+        'localizacao',
+        'url_avatar',
+        'bio',
+        'telefone',
+        'saldo_creditos',
+        'esta_destacado',
+        'destaque_expira_em',
+        'avaliacao_media',
+        'total_avaliacoes',
+        'total_trabalhos_concluidos',
+        'esta_ativo',
     ];
 
-    public function skills() {
-        return $this->belongsToMany(Skill::class, 'perfil_habilidades', 'perfil_id', 'habilidade_id');
-    }
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 
-    public function portfolio() {
-        return $this->hasMany(PortfolioItem::class, 'freelancer_id');
-    }
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+        'esta_destacado' => 'boolean',
+        'esta_ativo' => 'boolean',
+    ];
 }

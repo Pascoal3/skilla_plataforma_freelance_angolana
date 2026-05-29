@@ -9,15 +9,14 @@ return new class extends Migration {
     {
         Schema::create('perfis', function (Blueprint $table) {
             $table->uuid('id')->primary(); 
-            
             $table->string('primeiro_nome');
             $table->string('sobrenome');
-            $table->string('nome_usuario')->unique();
             $table->string('email')->unique();
-            $table->string('password'); // Alterado de password_hash para password (Padrão Laravel)
-            $table->string('funcao'); // cliente | freelancer | admin
+            $table->string('password');
+            $table->enum('funcao', ['cliente', 'freelancer']);
+            $table->timestamp('email_verified_at')->nullable();
+            $table->rememberToken();
             
-            // A tabela 'provincias' já existe agora, então isso funcionará:
             $table->foreignUuid('provincia_id')
                   ->nullable() 
                   ->constrained('provincias')
@@ -25,11 +24,8 @@ return new class extends Migration {
 
             $table->text('localizacao')->nullable(); 
             $table->text('url_avatar')->nullable();
-            
             $table->text('bio')->nullable();
             $table->string('telefone')->nullable();
-            
-
 
             $table->integer('saldo_creditos')->default(10);
             $table->boolean('esta_destacado')->default(false);
@@ -39,15 +35,12 @@ return new class extends Migration {
             $table->integer('total_trabalhos_concluidos')->default(0);
             $table->boolean('esta_ativo')->default(true);
             
-            $table->timestamps();
+            $table->timestamps(); // ← SÓ UMA VEZ (cria created_at + updated_at)
         });
     }
-
-
 
     public function down(): void
     {
         Schema::dropIfExists('perfis');
     }
 };
-

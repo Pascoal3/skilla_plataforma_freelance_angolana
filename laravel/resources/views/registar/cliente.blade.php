@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -122,6 +123,7 @@
             100% { transform: translateX(300%); }
         }
     </style>
+
 </head>
 <body class="font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
 <!-- TopNavBar (Derived from JSON with modification for white background) -->
@@ -194,28 +196,27 @@
 <!-- Row 4: Province Dropdown -->
 <div class="flex flex-col gap-2">
 <label class="font-label-caps text-label-caps uppercase text-slate-500">Província</label>
-<select class="w-full bg-slate-50 border-b-2 border-slate-200 focus:border-primary-container focus:ring-0 py-4 px-0 transition-all font-body-md text-slate-900 appearance-none">
-        <option disabled="" selected="" value="">Selecione a província</option>
-        <option value="bengo">Bengo</option>
-        <option value="benguela">Benguela</option>
-        <option value="bie">Bié</option>
-        <option value="cabinda">Cabinda</option>
-        <option value="cunene">Cunene</option>
-        <option value="huambo">Huambo</option>
-        <option value="huila">Huíla</option>
-        <option value="kuando-kubango">Kuando Kubango</option>
-        <option value="kwanza-norte">Kwanza Norte</option>
-        <option value="kwanza-sul">Kwanza Sul</option>
-        <option value="luanda">Luanda</option>
-        <option value="lunda-norte">Lunda Norte</option>
-        <option value="lunda-sul">Lunda Sul</option>
-        <option value="malanje">Malanje</option>
-        <option value="moxico">Moxico</option>
-        <option value="namibe">Namibe</option>
-        <option value="uige">Uíge</option>
-        <option value="zaire">Zaire</option>
-    </select>
-
+<select name="provincia_id" class="w-full bg-surface-container-low border-b-2 border-outline-variant focus:border-primary-fixed focus:ring-0 py-4 px-0 transition-all font-body-md text-on-background appearance-none cursor-pointer">
+    <option disabled selected value="">Selecione a província</option>
+    <option value="bengo">Bengo</option>
+    <option value="benguela">Benguela</option>
+    <option value="bie">Bié</option>
+    <option value="cabinda">Cabinda</option>
+    <option value="cunene">Cunene</option>
+    <option value="huambo">Huambo</option>
+    <option value="huila">Huíla</option>
+    <option value="kuando-kubango">Kuando Kubango</option>
+    <option value="kwanza-norte">Kwanza Norte</option>
+    <option value="kwanza-sul">Kwanza Sul</option>
+    <option value="luanda">Luanda</option>
+    <option value="lunda-norte">Lunda Norte</option>
+    <option value="lunda-sul">Lunda Sul</option>
+    <option value="malanje">Malanje</option>
+    <option value="moxico">Moxico</option>
+    <option value="namibe">Namibe</option>
+    <option value="uige">Uíge</option>
+    <option value="zaire">Zaire</option>
+</select>
 <span id="province-error" class="text-error text-sm font-medium mt-1 flex items-center gap-1 hidden">
 <span class="material-symbols-outlined text-[16px]" style="display:hidden;">error</span>
                         ❌ Por favor, selecione uma província
@@ -272,11 +273,11 @@
 </footer>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // Get form elements
+  // --- Seleção de Elementos ---
   const firstNameInput = document.querySelector('input[placeholder="Ex: Edson"]');
   const lastNameInput = document.querySelector('input[placeholder="Ex: Manuel"]');
   const emailInput = document.querySelector('input[type="email"]');
-  const passwordInput = document.querySelector('input[placeholder="Senha (8 ou mais caracteres)"]');
+  const passwordInput = document.querySelector('input[placeholder*="Senha"]');
   const provinceSelect = document.querySelector('select');
   const termsCheckbox = document.getElementById('terms-checkbox');
   const submitButton = document.querySelector('button[type="button"]:not(#toggle-password)');
@@ -289,13 +290,16 @@ document.addEventListener('DOMContentLoaded', function() {
   const provinceError = document.getElementById('province-error');
   const termsError = document.getElementById('terms-error');
 
-  // Password toggle
+  // Loading Overlay
+  const loadingOverlay = document.querySelector('.fixed.inset-0.z-\\[100\\]');
+  const successOverlay = document.getElementById('success-overlay-container');
+
+  // --- Password Toggle ---
   const togglePasswordBtn = document.getElementById('toggle-password');
   if (togglePasswordBtn) {
     togglePasswordBtn.addEventListener('click', function() {
       const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
       passwordInput.setAttribute('type', type);
-      // Change icon based on state
       const icon = this.querySelector('span');
       if (icon) {
         icon.textContent = type === 'password' ? 'visibility' : 'visibility_off';
@@ -303,9 +307,22 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Validation functions
+  // --- Funções de Validação ---
+  function showError(input, errorSpan, message) {
+    if(input) input.classList.add('border-error', 'border-red-500');
+    if(errorSpan) {
+      errorSpan.textContent = message;
+      errorSpan.classList.remove('hidden');
+    }
+  }
+
+  function hideError(input, errorSpan) {
+    if(input) input.classList.remove('border-error', 'border-red-500');
+    if(errorSpan) errorSpan.classList.add('hidden');
+  }
+
   function validateFirstName() {
-    const value = firstNameInput.value.trim();
+    const value = firstNameInput?.value.trim() || '';
     if (value === '') {
       showError(firstNameInput, firstNameError, 'Por favor, insira seu primeiro nome');
       return false;
@@ -316,7 +333,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function validateLastName() {
-    const value = lastNameInput.value.trim();
+    const value = lastNameInput?.value.trim() || '';
     if (value === '') {
       showError(lastNameInput, lastNameError, 'Por favor, insira seu sobrenome');
       return false;
@@ -327,7 +344,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function validateEmail() {
-    const value = emailInput.value.trim();
+    const value = emailInput?.value.trim() || '';
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (value === '') {
       showError(emailInput, emailError, 'Por favor, insira um endereço de e-mail');
@@ -342,7 +359,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function validatePassword() {
-    const value = passwordInput.value;
+    const value = passwordInput?.value || '';
     if (value.length < 8) {
       showError(passwordInput, passwordError, 'A senha deve ter pelo menos 8 caracteres');
       return false;
@@ -353,7 +370,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function validateProvince() {
-    const value = provinceSelect.value;
+    const value = provinceSelect?.value || '';
     if (value === '') {
       showError(provinceSelect, provinceError, 'Por favor, selecione uma província');
       return false;
@@ -364,7 +381,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function validateTerms() {
-    if (!termsCheckbox.checked) {
+    if (!termsCheckbox?.checked) {
       showError(termsCheckbox, termsError, 'Você deve aceitar os Termos de Serviço e Política de Privacidade');
       return false;
     } else {
@@ -373,26 +390,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  function showError(input, errorSpan, message) {
-    input.classList.add('border-error');
-    errorSpan.textContent = message;
-    errorSpan.classList.remove('hidden');
-  }
-
-  function hideError(input, errorSpan) {
-    input.classList.remove('border-error');
-    errorSpan.classList.add('hidden');
-  }
-
-  // Real-time validation
-  firstNameInput.addEventListener('input', validateFirstName);
-  lastNameInput.addEventListener('input', validateLastName);
-  emailInput.addEventListener('input', validateEmail);
-  passwordInput.addEventListener('input', validatePassword);
-  provinceSelect.addEventListener('change', validateProvince);
-  termsCheckbox.addEventListener('change', validateTerms);
-
-  // Function to update submit button state
+  // --- Atualizar Estado do Botão ---
   function updateSubmitButtonState() {
     const isFirstNameValid = validateFirstName();
     const isLastNameValid = validateLastName();
@@ -401,96 +399,152 @@ document.addEventListener('DOMContentLoaded', function() {
     const isProvinceValid = validateProvince();
     const isTermsValid = validateTerms();
 
-    const isFormValid = isFirstNameValid && isLastNameValid && isEmailValid && isPasswordValid && isProvinceValid && isTermsValid;
+    const isFormValid = isFirstNameValid && isLastNameValid && isEmailValid && 
+                        isPasswordValid && isProvinceValid && isTermsValid;
 
-    if (isFormValid) {
+    if (isFormValid && submitButton) {
       submitButton.removeAttribute('disabled');
       submitButton.classList.remove('opacity-40', 'cursor-not-allowed');
-    } else {
+    } else if (submitButton) {
       submitButton.setAttribute('disabled', '');
       submitButton.classList.add('opacity-40', 'cursor-not-allowed');
     }
   }
 
-  // Submit button logic
-  submitButton.addEventListener('click', function(e) {
-    e.preventDefault();
+  // --- Loading Toggle ---
+  function toggleLoading(show) {
+    if (show) {
+      if(loadingOverlay) loadingOverlay.classList.remove('hidden');
+      if(submitButton) {
+        submitButton.disabled = true;
+        submitButton.classList.add('opacity-50', 'cursor-not-allowed');
+      }
+    } else {
+      if(loadingOverlay) loadingOverlay.classList.add('hidden');
+      if(submitButton) {
+        submitButton.disabled = false;
+        submitButton.classList.remove('opacity-50', 'cursor-not-allowed');
+      }
+    }
+  }
 
-    // Update button state first to get latest validation results
-    updateSubmitButtonState();
+  // --- Event Listeners para Validação em Tempo Real ---
+  if(firstNameInput) firstNameInput.addEventListener('input', function() { validateFirstName(); updateSubmitButtonState(); });
+  if(lastNameInput) lastNameInput.addEventListener('input', function() { validateLastName(); updateSubmitButtonState(); });
+  if(emailInput) emailInput.addEventListener('input', function() { validateEmail(); updateSubmitButtonState(); });
+  if(passwordInput) passwordInput.addEventListener('input', function() { validatePassword(); updateSubmitButtonState(); });
+  if(provinceSelect) provinceSelect.addEventListener('change', function() { validateProvince(); updateSubmitButtonState(); });
+  if(termsCheckbox) termsCheckbox.addEventListener('change', function() { validateTerms(); updateSubmitButtonState(); });
 
-    // Check if form is valid
-    const isFirstNameValid = validateFirstName();
-    const isLastNameValid = validateLastName();
-    const isEmailValid = validateEmail();
-    const isPasswordValid = validatePassword();
-    const isProvinceValid = validateProvince();
-    const isTermsValid = validateTerms();
+  // --- Submit Button Logic ---
+  if(submitButton) {
+    submitButton.addEventListener('click', async function(e) {
+      e.preventDefault();
 
-    if (isFirstNameValid && isLastNameValid && isEmailValid && isPasswordValid && isProvinceValid && isTermsValid) {
-      // Show loading overlay
-      const overlay = document.querySelector('.fixed.inset-0.z-\\[100\\]');
-      if (overlay) {
-        overlay.classList.remove('hidden');
+      // Validação final antes de enviar
+      updateSubmitButtonState();
+
+      const isFirstNameValid = validateFirstName();
+      const isLastNameValid = validateLastName();
+      const isEmailValid = validateEmail();
+      const isPasswordValid = validatePassword();
+      const isProvinceValid = validateProvince();
+      const isTermsValid = validateTerms();
+
+      if (!isFirstNameValid || !isLastNameValid || !isEmailValid || 
+          !isPasswordValid || !isProvinceValid || !isTermsValid) {
+        return;
       }
 
-      // Simulate backend processing
-      setTimeout(() => {
-        // For simulation, let's assume success most of the time
-        // In real implementation, this would be based on actual API response
-        const isSuccess = Math.random() > 0.1; // 90% success rate for demo
+      // Preparar Dados
+      const formData = new FormData();
+      formData.append('primeiro_nome', firstNameInput.value.trim());
+      formData.append('sobrenome', lastNameInput.value.trim());
+      formData.append('email', emailInput.value.trim());
+      formData.append('password', passwordInput.value);
+      formData.append('provincia_id', provinceSelect.value);
+      
+      // Define a função baseada na página atual
+      const isClientePage = document.title.includes('Cliente'); 
+      formData.append('funcao', isClientePage ? 'cliente' : 'freelancer');
 
-        if (isSuccess) {
-          // Success: Keep overlay and redirect or show final message
-          // For now, we'll show an success alert and hide overlay after a moment
-          alert('Cadastro realizado com sucesso!');
-          // In a real app, you might redirect here:
-          // window.location.href = '/dashboard';
+      // Mostrar loading
+      toggleLoading(true);
 
-          // Hide overlay after success message
-          setTimeout(() => {
-            if (overlay) {
-              overlay.classList.add('hidden');
-            }
-          }, 1500);
-        } else {
-          // Error: Hide overlay and show error message
-          if (overlay) {
-            overlay.classList.add('hidden');
+      try {
+        const response = await fetch('/registar', {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content || '',
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
           }
-          alert('Erro ao processar o cadastro. Por favor, tente novamente.');
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          // SUCESSO
+          toggleLoading(false);
+          
+          // Mostrar overlay de sucesso se existir
+          if(successOverlay) {
+            successOverlay.classList.remove('hidden');
+          } else {
+            alert('Cadastro realizado com sucesso! Redirecionando...');
+          }
+
+          setTimeout(() => {
+            // Redirecionamento baseado no role retornado
+            if (data.role === 'cliente') {
+              window.location.href = '/painel/cliente';
+            } else {
+              window.location.href = '/painel/freelancer';
+            }
+          }, 3000);
+
+        } else if (response.status === 422) {
+          // ERRO DE VALIDAÇÃO DO SERVIDOR
+          toggleLoading(false);
+          
+          if (data.errors) {
+            const errorMap = {
+              'primeiro_nome': 'primeiro_nome',
+              'sobrenome': 'sobrenome',
+              'email': 'email',
+              'password': 'password',
+              'provincia_id': 'provincia'
+            };
+
+            for (const [key, messages] of Object.entries(data.errors)) {
+              const frontendKey = errorMap[key];
+              if (frontendKey) {
+                if (frontendKey === 'primeiro_nome') showError(firstNameInput, firstNameError, messages[0]);
+                else if (frontendKey === 'sobrenome') showError(lastNameInput, lastNameError, messages[0]);
+                else if (frontendKey === 'email') showError(emailInput, emailError, messages[0]);
+                else if (frontendKey === 'password') showError(passwordInput, passwordError, messages[0]);
+                else if (frontendKey === 'provincia') showError(provinceSelect, provinceError, messages[0]);
+              }
+            }
+          }
+          updateSubmitButtonState();
+          
+        } else {
+          // ERRO DO SERVIDOR
+          toggleLoading(false);
+          alert('Ocorreu um erro inesperado. Tente novamente.');
         }
-      }, 3000); // 3 seconds simulation
-    }
-  });
 
-  // Real-time validation with button state updates
-  firstNameInput.addEventListener('input', function() {
-    validateFirstName();
-    updateSubmitButtonState();
-  });
-  lastNameInput.addEventListener('input', function() {
-    validateLastName();
-    updateSubmitButtonState();
-  });
-  emailInput.addEventListener('input', function() {
-    validateEmail();
-    updateSubmitButtonState();
-  });
-  passwordInput.addEventListener('input', function() {
-    validatePassword();
-    updateSubmitButtonState();
-  });
-  provinceSelect.addEventListener('change', function() {
-    validateProvince();
-    updateSubmitButtonState();
-  });
-  termsCheckbox.addEventListener('change', function() {
-    validateTerms();
-    updateSubmitButtonState();
-  });
+      } catch (error) {
+        toggleLoading(false);
+        console.error('Erro:', error);
+        alert('Erro de conexão. Verifique sua internet.');
+      }
+    });
+  }
 
-  // Initial validation on load
+  // --- Validação Inicial ao Carregar ---
   validateFirstName();
   validateLastName();
   validateEmail();
