@@ -161,12 +161,27 @@
 <div class="flex flex-col gap-2">
 <label class="font-label-caps text-label-caps uppercase text-slate-500">PROVÍNCIA</label>
 <select class="w-full bg-slate-50 border-b-2 border-slate-200 focus:border-primary-container focus:ring-0 py-4 px-0 transition-all font-body-md text-slate-900 appearance-none">
-<option disabled="" selected="" value="">Selecione a província</option>
-<option value="luanda">Luanda</option>
-<option value="benguela">Benguela</option>
-<option value="huambo">Huambo</option>
-<option value="huila">Huíla</option>
-</select>
+        <option disabled="" selected="" value="">Selecione a província</option>
+        <option value="bengo">Bengo</option>
+        <option value="benguela">Benguela</option>
+        <option value="bie">Bié</option>
+        <option value="cabinda">Cabinda</option>
+        <option value="cunene">Cunene</option>
+        <option value="huambo">Huambo</option>
+        <option value="huila">Huíla</option>
+        <option value="kuando-kubango">Kuando Kubango</option>
+        <option value="kwanza-norte">Kwanza Norte</option>
+        <option value="kwanza-sul">Kwanza Sul</option>
+        <option value="luanda">Luanda</option>
+        <option value="lunda-norte">Lunda Norte</option>
+        <option value="lunda-sul">Lunda Sul</option>
+        <option value="malanje">Malanje</option>
+        <option value="moxico">Moxico</option>
+        <option value="namibe">Namibe</option>
+        <option value="uige">Uíge</option>
+        <option value="zaire">Zaire</option>
+    </select>
+
 </div>
 <!-- Consent Section -->
 <div class="space-y-4 pt-4">
