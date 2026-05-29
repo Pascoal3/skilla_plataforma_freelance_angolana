@@ -136,7 +136,10 @@
 <a class="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300" href="#faq">FAQ</a>
 </div>
 <div class="flex items-center gap-4">
-<button class="hidden md:block px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold rounded-full hover:bg-blue-50 transition-all active:scale-95">Entrar</button>
+<a href="{{ route('registar.tela_login') }}"
+   class="hidden md:block px-6 py-2 border-2 border-blue-600 text-blue-600 rounded-full">
+    Entrar
+</a>
 <a href="{{ route('pagina_escolher_funcao') }}"
    class="px-6 py-2 bg-blue-600 text-white font-bold rounded-full hover:bg-blue-700 transition-all active:scale-95 flex items-center gap-2 w-fit">
     Começar Grátis 
@@ -708,59 +711,89 @@
 </div>
 </section>
 <!-- Footer -->
-<footer class="bg-slate-950 pt-20 pb-10 border-t-2 border-slate-800">
-<div class="max-w-7xl mx-auto px-6 md:px-margin-desktop">
-<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
-<div class="md:col-span-1">
-<div class="text-3xl font-black text-white mb-6 font-headline-md uppercase">SKILLA</div>
-<p class="text-slate-500 mb-8 max-w-xs">Elevando o padrão do freelancing digital em Angola desde 2024.</p>
-<div class="flex gap-4">
-<a class="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center text-white hover:bg-primary-container hover:border-primary-container transition-all" href="#">
-<span class="material-symbols-outlined text-sm">public</span>
-</a>
-<a class="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center text-white hover:bg-primary-container hover:border-primary-container transition-all" href="#">
-<span class="material-symbols-outlined text-sm">alternate_email</span>
-</a>
-</div>
-</div>
-<div>
-<h4 class="font-label-caps uppercase text-white mb-6 tracking-widest text-sm">Plataforma</h4>
-<ul class="space-y-4">
-<li><a class="text-slate-400 hover:text-blue-400 transition-all text-sm uppercase" href="#">Como Funciona</a></li>
-<li><a class="text-slate-400 hover:text-blue-400 transition-all text-sm uppercase" href="#">Freelancers</a></li>
-<li><a class="text-slate-400 hover:text-blue-400 transition-all text-sm uppercase" href="#">Categorias</a></li>
-<li><a class="text-slate-400 hover:text-blue-400 transition-all text-sm uppercase" href="#">Preços</a></li>
-</ul>
-</div>
-<div>
-<h4 class="font-label-caps uppercase text-white mb-6 tracking-widest text-sm">Recursos</h4>
-<ul class="space-y-4">
-<li><a class="text-slate-400 hover:text-blue-400 transition-all text-sm uppercase" href="#">Blog</a></li>
-<li><a class="text-slate-400 hover:text-blue-400 transition-all text-sm uppercase" href="#">Suporte</a></li>
-<li><a class="text-slate-400 hover:text-blue-400 transition-all text-sm uppercase" href="#">FAQ</a></li>
-<li><a class="text-slate-400 hover:text-blue-400 transition-all text-sm uppercase" href="#">Comunidade</a></li>
-</ul>
-</div>
-<div>
-<h4 class="font-label-caps uppercase text-white mb-6 tracking-widest text-sm">Legal</h4>
-<ul class="space-y-4">
-<li><a class="text-slate-400 hover:text-blue-400 transition-all text-sm uppercase" href="#">Termos de Uso</a></li>
-<li><a class="text-slate-400 hover:text-blue-400 transition-all text-sm uppercase" href="#">Privacidade</a></li>
-<li><a class="text-slate-400 hover:text-blue-400 transition-all text-sm uppercase" href="#">Segurança</a></li>
-</ul>
-</div>
-</div>
-<div class="pt-10 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6">
-<div class="text-slate-600 text-xs font-label-caps uppercase tracking-widest">
-                    © 2024 Skilla. Todos os direitos reservados. Made in Luanda.
+<footer class="bg-slate-950 pt-20 pb-10 border-t-2 border-slate-800 text-slate-400">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+        
+        <!-- Top Section: Grid de Conteúdo e Newsletter -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20">
+            
+            <!-- Coluna da Marca -->
+            <div class="lg:col-span-4">
+                <div class="text-3xl font-black text-white mb-6 font-h1 uppercase tracking-tighter">
+                    SKILLA<span class="text-[#D6FF2A]">.</span>
                 </div>
-<div class="flex gap-8">
-<img alt="Visa" class="h-6 opacity-30 grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTZ_6D3DlV4tgkLGlTJ8tJJTzTkXlAvn7VuQYN07QD4gEteU7DWdGV6_0xhQYSpYbe-rVoxcCRkh8hh2oqAuKcaneUrQaPKIjqEwRh_Fd9n8KfTuAtSYgpJIq_xrMEiN-NUFWFEgaOw2zZoBLdwh-kkwzDGPb3UrvMTW1JEeSkG6KuOR20pzOn96FO1KhqaLSrEzDpctRxwkZKO-ow0f_V6o3aUtbBZgPX78OKjbG7vB6-LT4YcGCuJpIEiUyP8S-l_t6HnyUjphw"/>
-<img alt="Mastercard" class="h-6 opacity-30 grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqOwcafMgFkNUs7c9ZrPC16zXqDAZpjnAsCLCQLfFWCH2cucCaj3HxkwznpAR17wEw3f8DvvHVNEACtH-PWOpZ-uMVOalxcP-nJ9W2KLNTo48TNy7TEFPGamxG9UPAQIrnnhRjQgDaP3fTebAR0ZtXOgiYtApT12_dIkkyqAqCcSR6vQulc3frDh-ny94kZ6814BHgVmd6NDhbwSXy_3EqAbyO0ISMF-rwsgbuEHsTJy_vKYT3B8W8BAs4wtgpsRYQs50F-EgKHZQ"/>
-<span class="text-slate-600 font-black text-xs">MULTICAIXA</span>
-</div>
-</div>
-</div>
+                <p class="text-slate-500 mb-8 max-w-xs leading-relaxed">
+                    Elevando o padrão do freelancing digital em Angola. Conectamos os melhores talentos às empresas mais inovadoras.
+                </p>
+            </div>
+
+            <!-- Colunas de Links -->
+            <div class="lg:col-span-4 grid grid-cols-2 gap-8">
+                <div>
+                    <h4 class="font-label-caps uppercase text-white mb-6 tracking-widest text-xs font-bold">Plataforma</h4>
+                    <ul class="space-y-4">
+                        <li><a class="hover:text-[#D6FF2A] transition-all text-sm uppercase tracking-wide block group flex items-center gap-2" href="#">
+                            <span class="w-0 group-hover:w-2 h-px bg-[#D6FF2A] transition-all"></span> Como Funciona
+                        </a></li>
+                        <li><a class="hover:text-[#D6FF2A] transition-all text-sm uppercase tracking-wide block group flex items-center gap-2" href="#">
+                            <span class="w-0 group-hover:w-2 h-px bg-[#D6FF2A] transition-all"></span> Freelancers
+                        </a></li>
+                        <li><a class="hover:text-[#D6FF2A] transition-all text-sm uppercase tracking-wide block group flex items-center gap-2" href="#">
+                            <span class="w-0 group-hover:w-2 h-px bg-[#D6FF2A] transition-all"></span> Categorias
+                        </a></li>
+                        <li><a class="hover:text-[#D6FF2A] transition-all text-sm uppercase tracking-wide block group flex items-center gap-2" href="#">
+                            <span class="w-0 group-hover:w-2 h-px bg-[#D6FF2A] transition-all"></span> Preços
+                        </a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-label-caps uppercase text-white mb-6 tracking-widest text-xs font-bold">Recursos</h4>
+                    <ul class="space-y-4">
+                        <li><a class="hover:text-[#D6FF2A] transition-all text-sm uppercase tracking-wide block group flex items-center gap-2" href="#">
+                            <span class="w-0 group-hover:w-2 h-px bg-[#D6FF2A] transition-all"></span> Blog
+                        </a></li>
+                        <li><a class="hover:text-[#D6FF2A] transition-all text-sm uppercase tracking-wide block group flex items-center gap-2" href="#">
+                            <span class="w-0 group-hover:w-2 h-px bg-[#D6FF2A] transition-all"></span> Suporte
+                        </a></li>
+                        <li><a class="hover:text-[#D6FF2A] transition-all text-sm uppercase tracking-wide block group flex items-center gap-2" href="#">
+                            <span class="w-0 group-hover:w-2 h-px bg-[#D6FF2A] transition-all"></span> FAQ
+                        </a></li>
+                        <li><a class="hover:text-[#D6FF2A] transition-all text-sm uppercase tracking-wide block group flex items-center gap-2" href="#">
+                            <span class="w-0 group-hover:w-2 h-px bg-[#D6FF2A] transition-all"></span> Comunidade
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Newsletter Section -->
+            <div class="lg:col-span-4">
+                <h4 class="font-label-caps uppercase text-white mb-6 tracking-widest text-xs font-bold">Fique por dentro</h4>
+                <p class="text-sm text-slate-500 mb-4">Receba as melhores oportunidades de trabalho e dicas de carreira.</p>
+                <form class="flex gap-2">
+                    <input type="email" placeholder="Seu melhor e-mail" 
+                           class="bg-slate-900 border border-slate-800 text-white text-sm rounded-lg px-4 py-3 w-full focus:outline-none focus:border-[#D6FF2A] transition-all">
+                    <button class="bg-[#D6FF2A] text-slate-950 px-4 py-3 rounded-lg font-bold text-xs uppercase hover:brightness-110 transition-all">
+                        OK
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Bottom Bar: Copyright e Legal -->
+        <div class="pt-10 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-xs text-slate-600">
+                © 2024 <span class="text-slate-400 font-bold">SKILLA</span>. Todos os direitos reservados.
+            </div>
+            <div class="flex gap-8 text-xs uppercase tracking-widest">
+                <a href="#" class="hover:text-white transition-all">Termos de Uso</a>
+                <a href="#" class="hover:text-white transition-all">Privacidade</a>
+                <a href="#" class="hover:text-white transition-all">Segurança</a>
+            </div>
+            <div class="text-xs text-slate-600 italic">
+                Feito com em Angola
+            </div>
+        </div>
+    </div>
 </footer>
 <!-- Cookie Consent -->
 <!-- 

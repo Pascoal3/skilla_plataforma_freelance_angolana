@@ -9,8 +9,8 @@ return new class extends Migration {
     {
         Schema::create('provincias', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('nome')->unique(); // Ex: Luanda, Benguela
-            $table->string('sigla')->unique(); // Ex: LUE, BEN
+            $table->string('nome')->unique(); 
+            $table->string('sigla')->unique(); 
             $table->timestamps();
         });
     }

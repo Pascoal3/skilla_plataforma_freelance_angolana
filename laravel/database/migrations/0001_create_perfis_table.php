@@ -8,33 +8,29 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('perfis', function (Blueprint $table) {
-            // Primary Key UUID
             $table->uuid('id')->primary(); 
             
-            // Separação de nomes para melhor filtragem e exibição
             $table->string('primeiro_nome');
             $table->string('sobrenome');
-            
             $table->string('nome_usuario')->unique();
             $table->string('email')->unique();
-            $table->string('password_hash'); 
+            $table->string('password'); // Alterado de password_hash para password (Padrão Laravel)
             $table->string('funcao'); // cliente | freelancer | admin
             
-            // Localização vinculada à tabela de províncias
-            // foreignUuid cria a coluna uuid e constrained cria a relação de chave estrangeira
+            // A tabela 'provincias' já existe agora, então isso funcionará:
             $table->foreignUuid('provincia_id')
                   ->nullable() 
                   ->constrained('provincias')
-                  ->onDelete('set null'); // Se uma província for deletada, o perfil não é deletado
+                  ->onDelete('set null');
 
-            $table->text('localizacao')->nullable(); // Para Bairro, Rua, etc.
-            
+            $table->text('localizacao')->nullable(); 
             $table->text('url_avatar')->nullable();
-            $table->text('bio')->nullable();
             
+            $table->text('bio')->nullable();
             $table->string('telefone')->nullable();
             
-            // Métricas e Status
+
+
             $table->integer('saldo_creditos')->default(10);
             $table->boolean('esta_destacado')->default(false);
             $table->timestamp('destaque_expira_em')->nullable();
@@ -46,6 +42,7 @@ return new class extends Migration {
             $table->timestamps();
         });
     }
+
 
 
     public function down(): void

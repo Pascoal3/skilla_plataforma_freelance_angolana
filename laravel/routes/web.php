@@ -5,6 +5,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home.inicio');
 });
+
+Route::get('/', function () {
+    return view('home.inicio');
+})->name('home.inicio');
+
+Route::get('/login', function () {
+    return view('registar.tela_login');
+})->name('registar.tela_login');
+
+
 Route::get('/escolher-funcao', function () {
     return view('home.pagina_escolher_funcao');
 })->name('pagina_escolher_funcao');
@@ -40,4 +50,8 @@ Route::get('painel/cliente/teste', function (){
 });
 Route::get('painel/freelancer/teste', function (){
     return view('painel.painel_freelancer');
+});
+
+Route::get('/login/teste', function (){
+    return view('registar.tela_login');
 });
