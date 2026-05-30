@@ -162,7 +162,7 @@
 <a href="{{ route('registar.cliente') }}" class="px-8 py-4 bg-primary-container text-white rounded-full font-bold text-lg flex items-center justify-center gap-3 hover:shadow-xl transition-all">
                         Contratar Freelancer  <i class="fa-solid fa-arrow-up-right-from-square"></i>
 </a>
-<a href="{{ route('registar.freelancer') }}" class="px-8 py-4 border-2 border-primary-container text-primary-container rounded-full font-bold text-lg flex items-center justify-center hover:bg-primary-container/10 transition-all">
+<a href="{{ route('registar.freela') }}" class="px-8 py-4 border-2 border-primary-container text-primary-container rounded-full font-bold text-lg flex items-center justify-center hover:bg-primary-container/10 transition-all">
                         Trabalhar como Freelancer
                     </a>
 </div>
@@ -698,7 +698,7 @@
 <div class="lg:pl-12">
 <h3 class="font-display-lg text-5xl uppercase mb-6 leading-tight">Quer ser um <span class="italic text-secondary-fixed">Skillano?</span></h3>
 <p class="text-blue-100 text-lg mb-10">Trabalhe em projetos incríveis e seja pago no prazo. Sua carreira começa aqui.</p>
-<a href="{{ route('registar.freelancer') }}">
+<a href="{{ route('registar.freela') }}">
     <button class="px-10 py-5 bg-slate-950 text-white font-black rounded-full uppercase tracking-widest hover:bg-white hover:text-slate-950 transition-all flex items-center gap-3">
                             Criar Perfil <i class="fa-solid fa-user-plus material-symbols-outlined"></i>
     </button>

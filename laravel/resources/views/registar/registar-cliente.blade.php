@@ -241,9 +241,8 @@
 
         <!-- Form Card -->
         <div class="bg-surface-container rounded-xl border border-outline-variant p-card-padding space-y-6">
-            <form action="{{ route('registar') }}" method="POST" id="register-form" class="space-y-6" novalidate>
-                @csrf
-
+            <form id="register-form" class="space-y-6" novalidate>
+                
                 <!-- Nome e Sobrenome -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="flex flex-col gap-2">
@@ -602,14 +601,14 @@ document.addEventListener('DOMContentLoaded', function() {
       toggleLoading(true);
 
       try {
-        const response = await fetch('/registar', {  // ✅ Correto
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content || '',
-                'Accept': 'application/json',
-                'X-Requested-With': 'XMLHttpRequest'
-            }
+        const response = await fetch('/registar', {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content || '',
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+          }
         });
 
         const data = await response.json();

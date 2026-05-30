@@ -31,8 +31,8 @@ Route::prefix('registar')->group(function () {
     })->name('registar.cliente');
 
     Route::get('/freelancer', function () {
-        return view('registar.freelancer');
-    })->name('registar.freelancer');
+        return view('registar.freela');
+    })->name('registar.freela');
 });
 
 // Processar registro (POST)
@@ -59,3 +59,8 @@ Route::get('/painel/cliente', function () {
 Route::get('/painel/freelancer', function () {
     return view('painel.painel_freelancer');
 })->name('painel.freelancer');
+
+Route::get('/registar/freela', function () {
+    return view('registar.freela');
+})->name('registar.freela');
+
