@@ -1,19 +1,5 @@
 <!-- Overlay de Sucesso (Conta Criada) -->
-<div id="success-overlay-container" class="fixed inset-0 z-[200] hidden bg-background min-h-screen flex flex-col">
-    
-    <!-- TopAppBar -->
-    <header class="bg-background border-b border-outline-variant top-0 z-50">
-        <div class="flex justify-between items-center w-full px-container-padding py-base max-w-7xl mx-auto">
-            <div class="flex items-center gap-4">
-                <span class="font-h3 text-h3 font-bold text-primary-fixed">Skilla</span>
-            </div>
-            <div class="flex items-center gap-6">
-                <button class="material-symbols-outlined text-on-background hover:bg-surface-container-high transition-colors p-2 rounded-full opacity-80">
-                    account_circle
-                </button>
-            </div>
-        </div>
-    </header>
+<div id="success-overlay-container" class="fixed inset-0 z-[200] hidden bg-white min-h-screen flex flex-col">
 
     <!-- Main Success Content -->
     <main class="flex-grow flex items-center justify-center px-container-padding py-section-gap">
@@ -41,19 +27,6 @@
             </p>
         </div>
     </main>
-
-    <!-- Footer -->
-    <footer class="bg-surface border-t border-outline-variant">
-        <div class="flex flex-col md:flex-row justify-between items-center w-full px-container-padding py-card-padding gap-base max-w-7xl mx-auto">
-            <span class="font-label-caps text-label-caps text-on-surface">Skilla Angolan Marketplace</span>
-            <div class="flex gap-8">
-                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">Privacidade</a>
-                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">Termos de Serviço</a>
-                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary-fixed transition-colors" href="#">Ajuda</a>
-            </div>
-            <p class="font-body-md text-body-md text-on-surface-variant opacity-60">© 2024 Skilla. Todos os direitos reservados.</p>
-        </div>
-    </footer>
 
     <!-- Decorative Elements -->
     <div class="fixed top-1/4 -left-12 w-24 h-[1px] bg-primary-fixed opacity-20 rotate-45 pointer-events-none"></div>

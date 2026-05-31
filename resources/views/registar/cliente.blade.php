@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html class="dark" lang="pt-AO"><head>
+<html lang="pt-AO"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Cadastro de Cliente | SKILLA</title>
@@ -195,28 +195,35 @@
 </div>
 <!-- Row 4: Province Dropdown -->
 <div class="flex flex-col gap-2">
-<label class="font-label-caps text-label-caps uppercase text-slate-500">Província</label>
-<select name="provincia_id" class="w-full bg-surface-container-low border-b-2 border-outline-variant focus:border-primary-fixed focus:ring-0 py-4 px-0 transition-all font-body-md text-on-background appearance-none cursor-pointer">
-    <option disabled selected value="">Selecione a província</option>
-    <option value="bengo">Bengo</option>
-    <option value="benguela">Benguela</option>
-    <option value="bie">Bié</option>
-    <option value="cabinda">Cabinda</option>
-    <option value="cunene">Cunene</option>
-    <option value="huambo">Huambo</option>
-    <option value="huila">Huíla</option>
-    <option value="kuando-kubango">Kuando Kubango</option>
-    <option value="kwanza-norte">Kwanza Norte</option>
-    <option value="kwanza-sul">Kwanza Sul</option>
-    <option value="luanda">Luanda</option>
-    <option value="lunda-norte">Lunda Norte</option>
-    <option value="lunda-sul">Lunda Sul</option>
-    <option value="malanje">Malanje</option>
-    <option value="moxico">Moxico</option>
-    <option value="namibe">Namibe</option>
-    <option value="uige">Uíge</option>
-    <option value="zaire">Zaire</option>
-</select>
+    <label class="font-label-caps text-label-caps uppercase text-slate-500">Província</label>
+    <select name="provincia_id" 
+            class="w-full bg-white border-b-2 border-slate-200 focus:border-primary-container focus:ring-0 py-4 px-0 transition-all font-body-md text-slate-900 appearance-none cursor-pointer"
+            style="background-color: white !important;">
+        <option disabled selected value="">Selecione a província</option>
+        <option value="bengo">Bengo</option>
+        <option value="benguela">Benguela</option>
+        <option value="bie">Bié</option>
+        <option value="cabinda">Cabinda</option>
+        <option value="cunene">Cunene</option>
+        <option value="huambo">Huambo</option>
+        <option value="huila">Huíla</option>
+        <option value="kuando-kubango">Kuando Kubango</option>
+        <option value="kwanza-norte">Kwanza Norte</option>
+        <option value="kwanza-sul">Kwanza Sul</option>
+        <option value="luanda">Luanda</option>
+        <option value="lunda-norte">Lunda Norte</option>
+        <option value="lunda-sul">Lunda Sul</option>
+        <option value="malanje">Malanje</option>
+        <option value="moxico">Moxico</option>
+        <option value="namibe">Namibe</option>
+        <option value="uige">Uíge</option>
+        <option value="zaire">Zaire</option>
+    </select>
+    <span id="province-error" class="text-error text-sm font-medium mt-1 flex items-center gap-1 hidden">
+        <span class="material-symbols-outlined text-[16px]">error</span>
+        ❌ Por favor, selecione uma província
+    </span>
+</div>
 <span id="province-error" class="text-error text-sm font-medium mt-1 flex items-center gap-1 hidden">
 <span class="material-symbols-outlined text-[16px]" style="display:hidden;">error</span>
                         ❌ Por favor, selecione uma província
